@@ -12,5 +12,6 @@ public class FristGit {
     public void add(){
         int i=1;
         System.out.println(i+1);
+        System.out.println("杰哥最帅");
     }
 }
