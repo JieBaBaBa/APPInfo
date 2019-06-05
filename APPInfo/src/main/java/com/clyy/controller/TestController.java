@@ -8,6 +8,7 @@ public class TestController {
 
     @RequestMapping("/test.html")
     public String test(){
-        return "chartjs";
+
+        return "index";
     }
 }
