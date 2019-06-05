@@ -9,6 +9,6 @@ public class TestController {
     @RequestMapping("/test.html")
     public String test(){
 
-        return "index";
+        return "appinfolist";
     }
 }
