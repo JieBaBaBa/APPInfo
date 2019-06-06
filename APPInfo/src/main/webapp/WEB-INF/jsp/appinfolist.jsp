@@ -1,4 +1,5 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -210,6 +211,7 @@
 
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
+              <form method="post" action="${pageContext.request.contextPath }/appInfo/appinfolist.html">
               <div class="x_panel tile fixed_height_250">
                 <div class="x_title">
                   <h2>App信息管理维护</h2>
@@ -220,7 +222,7 @@
                   <div class="form-group" >
                     <label class="control-label col-md-1 col-sm-1 col-xs-2">软件名称</label>
                     <div class="col-md-2 col-sm-2 col-xs-4">
-                      <input type="text" class="form-control" placeholder="" style="margin: 0">
+                      <input type="text" name="softwareName" class="form-control" placeholder="" style="margin: 0">
                     </div>
                   </div>
                     <%--APP状态--%>
@@ -290,12 +292,55 @@
                               </select>
                           </div>
                       </div>
+                    <input type="submit" class="btn btn btn-primary" value="查询"/>
                   </div>
               </div>
+              </form>
+            </div>
             </div>
 
 
 
+
+
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel tile fixed_height_350">
+                <input type="button" class="btn btn-success" name="新增APP管理信息" value="新增APP管理信息"/>
+                <div class="x_content">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>软件名称</th>
+                        <th>APK名称</th>
+                        <th>软件大小(单位：M)</th>
+                        <th>所属平台</th>
+                        <th>所属分类(一级分类、二级分类、三级分类)</th>
+                        <th>状态</th>
+                        <th>下载次数</th>
+                        <th>最新版本号</th>
+                        <th>操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="appinfo" items="${appinfolist }" varStatus="status">
+                      <tr>
+                        <td>${appinfo.softwareName }</td>
+                        <td>${appinfo.APKName }</td>
+                        <td>${appinfo.softwareSize }</td>
+                        <td>${appinfo.flatformId }</td>
+                        <td>${appinfo.categoryLevel1 }->${appinfo.categoryLevel2 }->${appinfo.categoryLevel3 }</td>
+                        <td>${appinfo.status }</td>
+                        <td>${appinfo.downloads }</td>
+                        <td>${appinfo.versionId }</td>
+                        <td></td>
+                      </tr>
+                    </c:forEach>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
