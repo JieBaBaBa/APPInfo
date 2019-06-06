@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clyy.dao.AppInfoMapper">
+    <select id="findAllAppInfo" resultType="appInfo">
+        select * from app_info
+    </select>
+
+<!--    <resultMap id="AppInfo" type="appInfo">
+        <id column="" property=""></id>
+        <result column="" property=""></result>
+        <result column="" property=""></result>
+        <result column="" property=""></result>
+        <result column="" property=""></result>
+        <result column="" property=""></result>
+        <result column="" property=""></result>
+        <result column="" property=""></result>
+        <result column="" property=""></result>
+    </resultMap>-->
+</mapper>
