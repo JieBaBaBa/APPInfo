@@ -323,7 +323,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="appinfo" items="${appinfolist }" varStatus="status">
+                    <c:forEach var="appinfo" items="${pageSupport.list }" varStatus="status">
                       <tr>
                         <td>${appinfo.softwareName }</td>
                         <td>${appinfo.APKName }</td>
@@ -338,6 +338,12 @@
                     </c:forEach>
                     </tbody>
                   </table>
+                  <input type="hidden" id="totalPageCount" value="${pageSupport.totalPageCount}"/>
+                  <c:import url="rollpage.jsp">
+                    <c:param name="totalCount" value="${pageSupport.totalCount}"/>
+                    <c:param name="currentPageNo" value="${pageSupport.currentPageNo}"/>
+                    <c:param name="totalPageCount" value="${pageSupport.totalPageCount}"/>
+                  </c:import>
                 </div>
               </div>
             </div>
