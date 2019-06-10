@@ -42,7 +42,7 @@ public class AppInfoController {
 
     @RequestMapping(value = "/list.html")
     public String list(@RequestParam(value = "pageIndex",required = false,defaultValue = "1")Integer pageIndex,
-                       @RequestParam(value = "pageSize",required = false,defaultValue = "10")Integer pageSize, Model model){
+                       @RequestParam(value = "pageSize",required = false,defaultValue = "5")Integer pageSize, Model model){
 
         PageSupport<AppInfo> pageSupport = appInfoService.findAppInfoByPage(pageIndex, pageSize);
         model.addAttribute("pageSupport",pageSupport);

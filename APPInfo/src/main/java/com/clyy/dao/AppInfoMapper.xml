@@ -8,7 +8,11 @@
     </select>
 
     <select id="getAppInfoByPage" resultType="appInfo">
-        select * from app_info
+        SELECT * FROM app_info LIMIT #{pageIndex},#{pageSize}
+    </select>
+
+    <select id="getAppInfoCount" resultType="Integer">
+        SELECT COUNT(1) FROM app_info
     </select>
     <!--SELECT * FROM app_info,data_dictionary WHERE app_info.status=data_dictionary.id AND app_info.id=50-->
 <!--    <resultMap id="AppInfo" type="appInfo">
