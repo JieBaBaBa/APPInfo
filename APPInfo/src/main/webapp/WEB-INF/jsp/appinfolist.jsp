@@ -14,7 +14,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Gentellela Alela! | </title>
-
+    <%--公共--%>
+    <link type="text/css" rel="stylesheet" href="<%=basePath%>/statics/css/.css" />
+    <link type="text/css" rel="stylesheet" href="<%=basePath%>/statics/css/public.css" />
     <link href="<%=basePath%>/statics/css/cssreset.css" rel="stylesheet"/>
     <!-- Bootstrap -->
     <link href="<%=basePath%>/statics/css/bootstrap.min.css" rel="stylesheet">
@@ -211,7 +213,7 @@
 
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-              <form method="post" action="${pageContext.request.contextPath }/appInfo/appinfolist.html">
+              <form method="post" action="${pageContext.request.contextPath }/appInfo/list.html">
               <div class="x_panel tile fixed_height_250">
                 <div class="x_title">
                   <h2>App信息管理维护</h2>
@@ -293,6 +295,7 @@
                           </div>
                       </div>
                     <input type="submit" class="btn btn btn-primary" value="查询"/>
+                    <input type="hidden" name="pageIndex" value="1"/>
                   </div>
               </div>
               </form>

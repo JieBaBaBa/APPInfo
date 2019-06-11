@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/appinfo")
+@RequestMapping(value = "/appInfo")
 public class AppInfoController {
 
     @Resource
