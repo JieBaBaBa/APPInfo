@@ -19,5 +19,5 @@ public interface AppInfoService {
      * @param pageSize
      * @return
      */
-    public PageSupport<AppInfo> findAppInfoByPage(Integer pageIndex, Integer pageSize);
+    public PageSupport<AppInfo> findAppInfoByPage(String softwareName,Integer pageIndex, Integer pageSize);
 }

@@ -25,17 +25,17 @@ public class AppInfoServiceImpl implements AppInfoService {
     }
 
     @Override
-    public PageSupport<AppInfo> findAppInfoByPage(Integer pageIndex, Integer pageSize) {
+    public PageSupport<AppInfo> findAppInfoByPage(String softwareName,Integer pageIndex, Integer pageSize) {
 
         PageSupport<AppInfo> pageSupport = new PageSupport<>();
         //总数量
-        int totalCount = appInfoMapper.getAppInfoCount();
+        int totalCount = appInfoMapper.getAppInfoCount(softwareName);
         pageSupport.setPageSize(pageSize);
         pageSupport.setTotalCount(totalCount);
         pageSupport.setCurrentPageNo(pageIndex);
 
         if (totalCount>0){
-            List<AppInfo> list = appInfoMapper.getAppInfoByPage(pageSupport.getStarRow(), pageSize);
+            List<AppInfo> list = appInfoMapper.getAppInfoByPage(softwareName,pageSupport.getStarRow(), pageSize);
             pageSupport.setList(list);
         }
 

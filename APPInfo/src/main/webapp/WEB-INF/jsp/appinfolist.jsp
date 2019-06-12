@@ -220,17 +220,17 @@
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                  <%--软件名称--%>
+                  <%--软件名称--%>&nbsp;&nbsp;&nbsp;&nbsp;
                   <div class="form-group" >
                     <label class="control-label col-md-1 col-sm-1 col-xs-2">软件名称</label>
-                    <div class="col-md-2 col-sm-2 col-xs-4">
-                      <input type="text" name="softwareName" class="form-control" placeholder="" style="margin: 0">
+                    <div class="col-md-2 col-sm-2 col-xs-3">
+                      <input type="text" name="softwareName" class="form-control" placeholder="">
                     </div>
                   </div>
                     <%--APP状态--%>
                     <div class="form-group">
                       <label class="control-label col-md-1 col-sm-1 col-xs-2">APP状态</label>
-                      <div class="col-md-2 col-sm-2 col-xs-4">
+                      <div class="col-md-2 col-sm-2 col-xs-3">
                         <select class="form-control">
                           <option>Choose option</option>
                           <option>Option one</option>
@@ -243,7 +243,7 @@
                     <%--所属平台--%>
                     <div class="form-group">
                       <label class="control-label col-md-1 col-sm-1 col-xs-2">所属平台</label>
-                      <div class="col-md-2 col-sm-2 col-xs-4">
+                      <div class="col-md-2 col-sm-2 col-xs-3">
                         <select class="form-control">
                           <option>Choose option</option>
                           <option>Option one</option>

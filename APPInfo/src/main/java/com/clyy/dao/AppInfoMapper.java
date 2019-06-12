@@ -21,12 +21,13 @@ public interface AppInfoMapper {
      * @param pageSize
      * @return
      */
-    public List<AppInfo> getAppInfoByPage(@Param(value = "pageIndex") Integer pageIndex,
+    public List<AppInfo> getAppInfoByPage(@Param(value = "softwareName") String softwareName,
+                                          @Param(value = "pageIndex") Integer pageIndex,
                                           @Param(value = "pageSize") Integer pageSize);
 
     /**
      * 查数量
      * @return
      */
-    public int getAppInfoCount();
+    public int getAppInfoCount(@Param(value = "softwareName") String softwareName);
 }

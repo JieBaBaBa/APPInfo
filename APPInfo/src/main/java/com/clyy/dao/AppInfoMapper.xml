@@ -8,11 +8,23 @@
     </select>
 
     <select id="getAppInfoByPage" resultType="appInfo">
-        SELECT * FROM app_info LIMIT #{pageIndex},#{pageSize}
+        SELECT * FROM app_info
+        <where>
+          <if test="softwareName!=null and softwareName!=''">
+            and softwareName like concat('%',#{softwareName},'%')
+          </if>
+        </where>
+        LIMIT #{pageIndex},#{pageSize}
+
     </select>
 
     <select id="getAppInfoCount" resultType="Integer">
         SELECT COUNT(1) FROM app_info
+        <where>
+            <if test="softwareName!=null and softwareName!=''">
+                and softwareName like concat('%',#{softwareName},'%')
+            </if>
+        </where>
     </select>
     <!--SELECT * FROM app_info,data_dictionary WHERE app_info.status=data_dictionary.id AND app_info.id=50-->
 <!--    <resultMap id="AppInfo" type="appInfo">

@@ -41,10 +41,11 @@ public class AppInfoController {
     }
 
     @RequestMapping(value = "/list.html")
-    public String list(@RequestParam(value = "pageIndex",required = false,defaultValue = "1")Integer pageIndex,
+    public String list(@RequestParam(value = "softwareName",required = false,defaultValue = "")String softwareName,
+                       @RequestParam(value = "pageIndex",required = false,defaultValue = "1")Integer pageIndex,
                        @RequestParam(value = "pageSize",required = false,defaultValue = "5")Integer pageSize, Model model){
 
-        PageSupport<AppInfo> pageSupport = appInfoService.findAppInfoByPage(pageIndex, pageSize);
+        PageSupport<AppInfo> pageSupport = appInfoService.findAppInfoByPage(softwareName,pageIndex, pageSize);
         model.addAttribute("pageSupport",pageSupport);
         return "appinfolist";
     }
