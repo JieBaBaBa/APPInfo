@@ -12,22 +12,30 @@ public class AppInfo {
     private Date updateDate;
     private Integer devId;
     private String appInfo;
-    private Integer status;
+    private String status;
     private Date onSaleDate;
     private Date offSaleDate;
-    private Integer flatformId;
-    private Integer categoryLevel3;
+    private String flatformId;
+    private String categoryLevel3;
     private Integer downloads;
     private Integer createdBy;
     private Date creationDate;
     private Integer modifyBy;
     private Date modifyDate;
-    private Integer categoryLevel1;
-    private Integer categoryLevel2;
+    private String categoryLevel1;
+    private String categoryLevel2;
     private String logoPicPath;
     private String logoLocPath;
     private Integer versionId;
     private AppVersion appVersion;
+
+    public String getFlatformId() {
+        return flatformId;
+    }
+
+    public void setFlatformId(String flatformId) {
+        this.flatformId = flatformId;
+    }
 
     public AppVersion getAppVersion() {
         return appVersion;
@@ -109,11 +117,11 @@ public class AppInfo {
         this.appInfo = appInfo;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -133,19 +141,11 @@ public class AppInfo {
         this.offSaleDate = offSaleDate;
     }
 
-    public Integer getFlatformId() {
-        return flatformId;
-    }
-
-    public void setFlatformId(Integer flatformId) {
-        this.flatformId = flatformId;
-    }
-
-    public Integer getCategoryLevel3() {
+    public String getCategoryLevel3() {
         return categoryLevel3;
     }
 
-    public void setCategoryLevel3(Integer categoryLevel3) {
+    public void setCategoryLevel3(String categoryLevel3) {
         this.categoryLevel3 = categoryLevel3;
     }
 
@@ -189,19 +189,19 @@ public class AppInfo {
         this.modifyDate = modifyDate;
     }
 
-    public Integer getCategoryLevel1() {
+    public String getCategoryLevel1() {
         return categoryLevel1;
     }
 
-    public void setCategoryLevel1(Integer categoryLevel1) {
+    public void setCategoryLevel1(String categoryLevel1) {
         this.categoryLevel1 = categoryLevel1;
     }
 
-    public Integer getCategoryLevel2() {
+    public String getCategoryLevel2() {
         return categoryLevel2;
     }
 
-    public void setCategoryLevel2(Integer categoryLevel2) {
+    public void setCategoryLevel2(String categoryLevel2) {
         this.categoryLevel2 = categoryLevel2;
     }
 

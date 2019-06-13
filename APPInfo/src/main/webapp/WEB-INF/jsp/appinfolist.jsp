@@ -311,7 +311,7 @@
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel tile fixed_height_350">
-                <input type="button" class="btn btn-success" name="新增APP管理信息" value="新增APP管理信息"/>
+                <a href="${pageContext.request.contextPath }/appInfo/appinfoadd.html">新增APP基础信息</a>
                 <div class="x_content">
                   <table class="table table-bordered">
                     <thead>

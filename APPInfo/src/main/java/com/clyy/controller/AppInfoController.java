@@ -40,6 +40,14 @@ public class AppInfoController {
         return "appinfolist";
     }
 
+    /**
+     * 分页查询
+     * @param softwareName
+     * @param pageIndex
+     * @param pageSize
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/list.html")
     public String list(@RequestParam(value = "softwareName",required = false,defaultValue = "")String softwareName,
                        @RequestParam(value = "pageIndex",required = false,defaultValue = "1")Integer pageIndex,
@@ -49,4 +57,15 @@ public class AppInfoController {
         model.addAttribute("pageSupport",pageSupport);
         return "appinfolist";
     }
+
+    /**
+     * 新增addinfo前，跳转到新增页面
+     * @return
+     */
+    @RequestMapping(value = "/appinfoadd.html")
+    public String appinfoadd(){
+        return "appinfoadd";
+    }
+
+
 }
