@@ -232,11 +232,12 @@
                       <label class="control-label col-md-1 col-sm-1 col-xs-2">APP状态</label>
                       <div class="col-md-2 col-sm-2 col-xs-3">
                         <select class="form-control">
-                          <option>Choose option</option>
-                          <option>Option one</option>
-                          <option>Option two</option>
-                          <option>Option three</option>
-                          <option>Option four</option>
+                          <option></option>
+                          <option>待审核</option>
+                          <option>审核通过</option>
+                          <option>审核通过</option>
+                          <option>已上架</option>
+                          <option>已下架</option>
                         </select>
                       </div>
                     </div>
@@ -245,11 +246,10 @@
                       <label class="control-label col-md-1 col-sm-1 col-xs-2">所属平台</label>
                       <div class="col-md-2 col-sm-2 col-xs-3">
                         <select class="form-control">
-                          <option>Choose option</option>
-                          <option>Option one</option>
-                          <option>Option two</option>
-                          <option>Option three</option>
-                          <option>Option four</option>
+                          <option></option>
+                          <option>手机</option>
+                          <option>平板</option>
+                          <option>通用</option>
                         </select>
                       </div>
                     </div>
@@ -260,11 +260,9 @@
                               <label class="control-label col-md-1 col-sm-1 col-xs-2">一级界面</label>
                               <div class="col-md-2 col-sm-2 col-xs-3">
                                   <select class="form-control">
-                                      <option>Choose option</option>
-                                      <option>Option one</option>
-                                      <option>Option two</option>
-                                      <option>Option three</option>
-                                      <option>Option four</option>
+                                      <option></option>
+                                      <option>全部应用</option>
+                                      <option>全部游戏</option>
                                   </select>
                               </div>
                           </div>
@@ -273,11 +271,11 @@
                           <label class="control-label col-md-1 col-sm-1 col-xs-2">二级界面</label>
                           <div class="col-md-2 col-sm-2 col-xs-3">
                               <select class="form-control">
-                                  <option>Choose option</option>
-                                  <option>Option one</option>
-                                  <option>Option two</option>
-                                  <option>Option three</option>
-                                  <option>Option four</option>
+                                  <option></option>
+                                  <option>系统工具</option>
+                                  <option>桌面插件</option>
+                                  <option>休闲游戏</option>
+                                  <option>益智游戏</option>
                               </select>
                           </div>
                       </div>
@@ -286,11 +284,15 @@
                           <label class="control-label col-md-1 col-sm-1 col-xs-2">三级界面</label>
                           <div class="col-md-2 col-sm-2 col-xs-3">
                               <select class="form-control">
-                                  <option>Choose option</option>
-                                  <option>Option one</option>
-                                  <option>Option two</option>
-                                  <option>Option three</option>
-                                  <option>Option four</option>
+                                  <option></option>
+                                  <option>输入法</option>
+                                  <option>文件管理</option>
+                                  <option>安全防护</option>
+                                  <option>锁屏</option>
+                                  <option>跳舞</option>
+                                  <option>冒险</option>
+                                  <option>解谜</option>
+                                  <option>物理</option>
                               </select>
                           </div>
                       </div>
@@ -335,7 +337,7 @@
                         <td>${appinfo.categoryLevel1 }->${appinfo.categoryLevel2 }->${appinfo.categoryLevel3 }</td>
                         <td>${appinfo.status }</td>
                         <td>${appinfo.downloads }</td>
-                        <td>${appinfo.versionId }</td>
+                        <td>${appinfo.appVersion.versionNo }</td>
                         <td></td>
                       </tr>
                     </c:forEach>

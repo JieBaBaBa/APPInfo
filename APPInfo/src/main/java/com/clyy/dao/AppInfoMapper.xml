@@ -7,15 +7,28 @@
         select * from app_info
     </select>
 
-    <select id="getAppInfoByPage" resultType="appInfo">
-        SELECT * FROM app_info
-        <where>
-          <if test="softwareName!=null and softwareName!=''">
-            and softwareName like concat('%',#{softwareName},'%')
-          </if>
-        </where>
-        LIMIT #{pageIndex},#{pageSize}
-
+    <select id="getAppInfoByPage" resultMap="AppInfo">
+        SELECT
+            app_info.id,
+            app_info.softwareName,
+            app_info.APKName,
+            app_info.softwareSize,
+            app_info.flatformId,
+            app_info.categoryLevel1,
+            app_info.categoryLevel2,
+            app_info.categoryLevel3,
+            app_info.status,
+            app_info.downloads,
+            app_version.versionNo
+	     FROM app_info
+         LEFT JOIN app_version ON app_info.id=app_version.appId
+         <where>
+             <if test="softwareName!=null and softwareName!=''">
+                and softwareName like concat('%',#{softwareName},'%')
+             </if>
+         </where>
+         GROUP BY app_info.id
+         LIMIT #{pageIndex},#{pageSize}
     </select>
 
     <select id="getAppInfoCount" resultType="Integer">
@@ -27,15 +40,16 @@
         </where>
     </select>
     <!--SELECT * FROM app_info,data_dictionary WHERE app_info.status=data_dictionary.id AND app_info.id=50-->
-<!--    <resultMap id="AppInfo" type="appInfo">
-        <id column="" property=""></id>
-        <result column="" property=""></result>
-        <result column="" property=""></result>
-        <result column="" property=""></result>
-        <result column="" property=""></result>
-        <result column="" property=""></result>
-        <result column="" property=""></result>
-        <result column="" property=""></result>
-        <result column="" property=""></result>
-    </resultMap>-->
+        <resultMap id="AppInfo" type="appInfo">
+            <id column="id" property="id"></id>
+            <result column="softwareName" property="softwareName"></result>
+            <result column="softwareSize" property="softwareSize"></result>
+            <result column="flatformId" property="flatformId"></result>
+            <result column="categoryLevel1" property="categoryLevel1"></result>
+            <result column="categoryLevel2" property="categoryLevel2"></result>
+            <result column="categoryLevel3" property="categoryLevel3"></result>
+            <result column="status" property="status"></result>
+            <result column="downloads" property="downloads"></result>
+            <result column="versionNo" property="appVersion.versionNo"></result>
+        </resultMap>
 </mapper>

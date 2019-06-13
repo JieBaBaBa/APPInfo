@@ -5,7 +5,6 @@ import com.clyy.pojo.AppInfo;
 import com.clyy.service.AppInfoService;
 import com.clyy.util.PageSupport;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 

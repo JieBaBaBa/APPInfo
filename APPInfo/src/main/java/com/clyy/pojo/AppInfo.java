@@ -27,6 +27,15 @@ public class AppInfo {
     private String logoPicPath;
     private String logoLocPath;
     private Integer versionId;
+    private AppVersion appVersion;
+
+    public AppVersion getAppVersion() {
+        return appVersion;
+    }
+
+    public void setAppVersion(AppVersion appVersion) {
+        this.appVersion = appVersion;
+    }
 
     public Integer getId() {
         return id;
