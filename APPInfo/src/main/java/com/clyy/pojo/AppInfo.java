@@ -16,18 +16,28 @@ public class AppInfo {
     private Date onSaleDate;
     private Date offSaleDate;
     private String flatformId;
-    private String categoryLevel3;
+
     private Integer downloads;
     private Integer createdBy;
     private Date creationDate;
     private Integer modifyBy;
     private Date modifyDate;
+
     private String categoryLevel1;
+    private String categoryLevel1Name;
     private String categoryLevel2;
+    private String categoryLevel3;
+
     private String logoPicPath;
     private String logoLocPath;
     private Integer versionId;
     private AppVersion appVersion;
+
+    private String flatformName;
+
+    public void setFlatformName(String flatformName) {
+        this.flatformName = flatformName;
+    }
 
     public String getFlatformId() {
         return flatformId;

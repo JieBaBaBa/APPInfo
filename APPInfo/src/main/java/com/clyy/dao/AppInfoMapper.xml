@@ -6,7 +6,7 @@
     <select id="findAllAppInfo" resultType="appInfo">
         select * from app_info
     </select>
-
+    <!---->
     <select id="getAppInfoByPage" resultMap="AppInfo">
         SELECT
             app_info.id,
@@ -19,14 +19,15 @@
             app_info.categoryLevel3,
             app_info.status,
             app_info.downloads,
-            app_version.versionNo
-	     FROM app_info
-         LEFT JOIN app_version ON app_info.id=app_version.appId
-         <where>
+            app_version.versionNo,
+            dd.valueName flatformName
+	     FROM app_info ai, app_version av, data_dictionary dd
+	     <trim prefix="where" prefixOverrides="and|or">
+             ai.id=av.appId and ai.flatformId=dd.valueId and dd.typeCode='APP_FLATFORM'
              <if test="softwareName!=null and softwareName!=''">
-                and softwareName like concat('%',#{softwareName},'%')
+                 and softwareName like concat('%',#{softwareName},'%')
              </if>
-         </where>
+         </trim>
          GROUP BY app_info.id
          LIMIT #{pageIndex},#{pageSize}
     </select>

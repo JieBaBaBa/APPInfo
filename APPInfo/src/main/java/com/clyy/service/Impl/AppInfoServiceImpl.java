@@ -36,6 +36,8 @@ public class AppInfoServiceImpl implements AppInfoService {
         if (totalCount>0){
             List<AppInfo> list = appInfoMapper.getAppInfoByPage(softwareName,pageSupport.getStarRow(), pageSize);
             for (AppInfo ai:list) {
+
+
                 //变换名
                 if (("1").equals(ai.getFlatformId())){
                     ai.setFlatformId("手机");
