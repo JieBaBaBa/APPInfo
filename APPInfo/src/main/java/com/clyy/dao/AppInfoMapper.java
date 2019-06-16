@@ -1,6 +1,7 @@
 package com.clyy.dao;
 
 import com.clyy.pojo.AppInfo;
+import com.clyy.pojo.DataDictionary;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -22,12 +23,19 @@ public interface AppInfoMapper {
      * @return
      */
     public List<AppInfo> getAppInfoByPage(@Param(value = "softwareName") String softwareName,
+                                          @Param(value = "status") String status,
                                           @Param(value = "pageIndex") Integer pageIndex,
                                           @Param(value = "pageSize") Integer pageSize);
 
     /**
-     * 查数量
+     * 查总数量
      * @return
      */
     public int getAppInfoCount(@Param(value = "softwareName") String softwareName);
+
+    /**
+     * 查询所有状态
+     * @return
+     */
+    public List<DataDictionary> getallstatus();
 }

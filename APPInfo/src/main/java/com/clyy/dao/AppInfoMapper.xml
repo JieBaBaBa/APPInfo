@@ -6,6 +6,7 @@
     <select id="findAllAppInfo" resultType="appInfo">
         select * from app_info
     </select>
+    
     <!--分页查询-->
     <select id="getAppInfoByPage" resultType="AppInfo">
         SELECT
@@ -36,11 +37,15 @@
              <if test="softwareName!=null and softwareName!=''">
                  and softwareName like concat('%',#{softwareName},'%')
              </if>
+             <if test="status!=null and status!=''">
+                 and status = #{status}
+             </if>
          </trim>
          GROUP BY ai.id
          LIMIT #{pageIndex},#{pageSize}
     </select>
-
+    
+    <!--总数量-->
     <select id="getAppInfoCount" resultType="Integer">
         SELECT COUNT(1) FROM app_info
         <trim prefix="where" prefixOverrides="and|or">
@@ -48,6 +53,10 @@
                 and softwareName like concat('%',#{softwareName},'%')
             </if>
         </trim>
+    </select>
+    
+    <select id="getallstatus" resultType="dataDictionary">
+        SELECT valueId,valueName FROM data_dictionary WHERE typeCode='APP_STATUS'
     </select>
 
     <!--appInfo的映射文件-->

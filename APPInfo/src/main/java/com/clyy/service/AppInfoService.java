@@ -1,6 +1,7 @@
 package com.clyy.service;
 
 import com.clyy.pojo.AppInfo;
+import com.clyy.pojo.DataDictionary;
 import com.clyy.util.PageSupport;
 
 import java.util.List;
@@ -19,5 +20,12 @@ public interface AppInfoService {
      * @param pageSize
      * @return
      */
-    public PageSupport<AppInfo> findAppInfoByPage(String softwareName,Integer pageIndex, Integer pageSize);
+    public PageSupport<AppInfo> findAppInfoByPage(String softwareName,String status,Integer pageIndex, Integer pageSize);
+
+    /**
+     * 查询所有状态
+     * @return
+     */
+    public List<DataDictionary> getallstatus();
+
 }

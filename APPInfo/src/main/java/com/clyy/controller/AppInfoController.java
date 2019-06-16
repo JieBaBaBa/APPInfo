@@ -1,6 +1,7 @@
 package com.clyy.controller;
 
 import com.clyy.pojo.AppInfo;
+import com.clyy.pojo.DataDictionary;
 import com.clyy.service.AppInfoService;
 import com.clyy.util.PageSupport;
 import org.springframework.stereotype.Controller;
@@ -50,11 +51,14 @@ public class AppInfoController {
      */
     @RequestMapping(value = "/list.html")
     public String list(@RequestParam(value = "softwareName",required = false,defaultValue = "")String softwareName,
+                       @RequestParam(value = "queryStatus",required = false,defaultValue = "") String status,
                        @RequestParam(value = "pageIndex",required = false,defaultValue = "1")Integer pageIndex,
                        @RequestParam(value = "pageSize",required = false,defaultValue = "5")Integer pageSize, Model model){
 
-        PageSupport<AppInfo> pageSupport = appInfoService.findAppInfoByPage(softwareName,pageIndex, pageSize);
+        PageSupport<AppInfo> pageSupport = appInfoService.findAppInfoByPage(softwareName,status,pageIndex, pageSize);
         model.addAttribute("pageSupport",pageSupport);
+        List<DataDictionary> statusList = appInfoService.getallstatus();
+        model.addAttribute("statusList",statusList);
         return "developer/appinfolist";
     }
 
@@ -64,7 +68,7 @@ public class AppInfoController {
      */
     @RequestMapping(value = "/appinfoadd.html")
     public String appinfoadd(){
-        return "appinfoadd";
+        return "developer/appinfoadd";
     }
 
 
