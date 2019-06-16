@@ -35,7 +35,7 @@ public class AppInfoServiceImpl implements AppInfoService {
 
         if (totalCount>0){
             List<AppInfo> list = appInfoMapper.getAppInfoByPage(softwareName,pageSupport.getStarRow(), pageSize);
-            for (AppInfo ai:list) {
+            /*for (AppInfo ai:list) {
 
 
                 //变换名
@@ -90,7 +90,7 @@ public class AppInfoServiceImpl implements AppInfoService {
                 }
 
 
-            }
+            }*/
             pageSupport.setList(list);
         }
 

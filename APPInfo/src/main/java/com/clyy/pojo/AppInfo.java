@@ -12,47 +12,35 @@ public class AppInfo {
     private Date updateDate;
     private Integer devId;
     private String appInfo;
-    private String status;
+    private Integer status;
     private Date onSaleDate;
     private Date offSaleDate;
-    private String flatformId;
-
+    private Integer flatformId;
     private Integer downloads;
     private Integer createdBy;
     private Date creationDate;
     private Integer modifyBy;
     private Date modifyDate;
-
-    private String categoryLevel1;
+    private Integer categoryLevel1;
     private String categoryLevel1Name;
-    private String categoryLevel2;
-    private String categoryLevel3;
-
+    private Integer categoryLevel2;
+    private String categoryLevel2Name;
+    private Integer categoryLevel3;
+    private String categoryLevel3Name;
     private String logoPicPath;
     private String logoLocPath;
     private Integer versionId;
     private AppVersion appVersion;
-
     private String flatformName;
+    private String statusName;
+    private String versionNo;
 
-    public void setFlatformName(String flatformName) {
-        this.flatformName = flatformName;
+    public String getVersionNo() {
+        return versionNo;
     }
 
-    public String getFlatformId() {
-        return flatformId;
-    }
-
-    public void setFlatformId(String flatformId) {
-        this.flatformId = flatformId;
-    }
-
-    public AppVersion getAppVersion() {
-        return appVersion;
-    }
-
-    public void setAppVersion(AppVersion appVersion) {
-        this.appVersion = appVersion;
+    public void setVersionNo(String versionNo) {
+        this.versionNo = versionNo;
     }
 
     public Integer getId() {
@@ -127,11 +115,11 @@ public class AppInfo {
         this.appInfo = appInfo;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -151,12 +139,12 @@ public class AppInfo {
         this.offSaleDate = offSaleDate;
     }
 
-    public String getCategoryLevel3() {
-        return categoryLevel3;
+    public Integer getFlatformId() {
+        return flatformId;
     }
 
-    public void setCategoryLevel3(String categoryLevel3) {
-        this.categoryLevel3 = categoryLevel3;
+    public void setFlatformId(Integer flatformId) {
+        this.flatformId = flatformId;
     }
 
     public Integer getDownloads() {
@@ -199,20 +187,52 @@ public class AppInfo {
         this.modifyDate = modifyDate;
     }
 
-    public String getCategoryLevel1() {
+    public Integer getCategoryLevel1() {
         return categoryLevel1;
     }
 
-    public void setCategoryLevel1(String categoryLevel1) {
+    public void setCategoryLevel1(Integer categoryLevel1) {
         this.categoryLevel1 = categoryLevel1;
     }
 
-    public String getCategoryLevel2() {
+    public String getCategoryLevel1Name() {
+        return categoryLevel1Name;
+    }
+
+    public void setCategoryLevel1Name(String categoryLevel1Name) {
+        this.categoryLevel1Name = categoryLevel1Name;
+    }
+
+    public Integer getCategoryLevel2() {
         return categoryLevel2;
     }
 
-    public void setCategoryLevel2(String categoryLevel2) {
+    public void setCategoryLevel2(Integer categoryLevel2) {
         this.categoryLevel2 = categoryLevel2;
+    }
+
+    public String getCategoryLevel2Name() {
+        return categoryLevel2Name;
+    }
+
+    public void setCategoryLevel2Name(String categoryLevel2Name) {
+        this.categoryLevel2Name = categoryLevel2Name;
+    }
+
+    public Integer getCategoryLevel3() {
+        return categoryLevel3;
+    }
+
+    public void setCategoryLevel3(Integer categoryLevel3) {
+        this.categoryLevel3 = categoryLevel3;
+    }
+
+    public String getCategoryLevel3Name() {
+        return categoryLevel3Name;
+    }
+
+    public void setCategoryLevel3Name(String categoryLevel3Name) {
+        this.categoryLevel3Name = categoryLevel3Name;
     }
 
     public String getLogoPicPath() {
@@ -239,33 +259,27 @@ public class AppInfo {
         this.versionId = versionId;
     }
 
-    @Override
-    public String toString() {
-        return "AppInfo{" +
-                "id=" + id +
-                ", softwareName='" + softwareName + '\'' +
-                ", APKName='" + APKName + '\'' +
-                ", supportROM='" + supportROM + '\'' +
-                ", interfaceLanguage='" + interfaceLanguage + '\'' +
-                ", softwareSize=" + softwareSize +
-                ", updateDate=" + updateDate +
-                ", devId=" + devId +
-                ", appInfo='" + appInfo + '\'' +
-                ", status=" + status +
-                ", onSaleDate=" + onSaleDate +
-                ", offSaleDate=" + offSaleDate +
-                ", flatformId=" + flatformId +
-                ", categoryLevel3=" + categoryLevel3 +
-                ", downloads=" + downloads +
-                ", createdBy=" + createdBy +
-                ", creationDate=" + creationDate +
-                ", modifyBy=" + modifyBy +
-                ", modifyDate=" + modifyDate +
-                ", categoryLevel1=" + categoryLevel1 +
-                ", categoryLevel2=" + categoryLevel2 +
-                ", logoPicPath='" + logoPicPath + '\'' +
-                ", logoLocPath='" + logoLocPath + '\'' +
-                ", versionId=" + versionId +
-                '}';
+    public AppVersion getAppVersion() {
+        return appVersion;
+    }
+
+    public void setAppVersion(AppVersion appVersion) {
+        this.appVersion = appVersion;
+    }
+
+    public String getFlatformName() {
+        return flatformName;
+    }
+
+    public void setFlatformName(String flatformName) {
+        this.flatformName = flatformName;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
     }
 }

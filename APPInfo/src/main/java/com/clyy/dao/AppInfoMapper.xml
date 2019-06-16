@@ -6,24 +6,33 @@
     <select id="findAllAppInfo" resultType="appInfo">
         select * from app_info
     </select>
-    <!---->
+    <!--分页查询-->
     <select id="getAppInfoByPage" resultMap="AppInfo">
         SELECT
-            app_info.id,
-            app_info.softwareName,
-            app_info.APKName,
-            app_info.softwareSize,
-            app_info.flatformId,
-            app_info.categoryLevel1,
-            app_info.categoryLevel2,
-            app_info.categoryLevel3,
-            app_info.status,
-            app_info.downloads,
-            app_version.versionNo,
-            dd.valueName flatformName
-	     FROM app_info ai, app_version av, data_dictionary dd
+            ai.id,
+            ai.softwareName,
+            ai.APKName,
+            ai.softwareSize,
+            ai.flatformId,
+            ai.categoryLevel1,
+            ai.categoryLevel2,
+            ai.categoryLevel3,
+            ai.status,
+            ai.downloads,
+            av.versionNo,
+            dd.valueName statusName,
+            ddy.valueName flatformName,
+            ac1.categoryName categoryLevel1Name,
+            ac2.categoryName categoryLevel2Name,
+            ac3.categoryName categoryLevel3Name
+        FROM app_info ai
+        LEFT JOIN app_version av ON ai.id=av.appId
+        JOIN data_dictionary dd ON ai.flatformId=dd.valueId AND dd.typeCode='APP_FLATFORM'
+        JOIN data_dictionary ddy ON ai.status=ddy.valueId AND ddy.typeCode='APP_STATUS'
+        JOIN app_category ac1 ON ai.categoryLevel1=ac1.id
+        JOIN app_category ac2 ON ai.categoryLevel2=ac2.id
+        JOIN app_category ac3 ON ai.categoryLevel3=ac3.id
 	     <trim prefix="where" prefixOverrides="and|or">
-             ai.id=av.appId and ai.flatformId=dd.valueId and dd.typeCode='APP_FLATFORM'
              <if test="softwareName!=null and softwareName!=''">
                  and softwareName like concat('%',#{softwareName},'%')
              </if>
@@ -34,23 +43,29 @@
 
     <select id="getAppInfoCount" resultType="Integer">
         SELECT COUNT(1) FROM app_info
-        <where>
+        <trim prefix="where" prefixOverrides="and|or">
             <if test="softwareName!=null and softwareName!=''">
                 and softwareName like concat('%',#{softwareName},'%')
             </if>
-        </where>
+        </trim>
     </select>
-    <!--SELECT * FROM app_info,data_dictionary WHERE app_info.status=data_dictionary.id AND app_info.id=50-->
-        <resultMap id="AppInfo" type="appInfo">
-            <id column="id" property="id"></id>
-            <result column="softwareName" property="softwareName"></result>
-            <result column="softwareSize" property="softwareSize"></result>
-            <result column="flatformId" property="flatformId"></result>
-            <result column="categoryLevel1" property="categoryLevel1"></result>
-            <result column="categoryLevel2" property="categoryLevel2"></result>
-            <result column="categoryLevel3" property="categoryLevel3"></result>
-            <result column="status" property="status"></result>
-            <result column="downloads" property="downloads"></result>
-            <result column="versionNo" property="appVersion.versionNo"></result>
-        </resultMap>
+
+    <!--appInfo的映射文件-->
+    <resultMap id="AppInfo" type="appInfo">
+        <id column="id" property="id"></id>
+        <result column="softwareName" property="softwareName"></result>
+        <result column="softwareSize" property="softwareSize"></result>
+        <result column="flatformId" property="flatformId"></result>
+        <result column="categoryLevel1" property="categoryLevel1"></result>
+        <result column="categoryLevel2" property="categoryLevel2"></result>
+        <result column="categoryLevel3" property="categoryLevel3"></result>
+        <result column="status" property="status"></result>
+        <result column="downloads" property="downloads"></result>
+        <result column="versionNo" property="versionNo"></result>
+        <result column="statusName" property="statusName"></result>
+        <result column="flatformName" property="flatformName"></result>
+        <result column="categoryLevel1Name" property="categoryLevel1Name"></result>
+        <result column="categoryLevel2Name" property="categoryLevel2Name"></result>
+        <result column="categoryLevel3Name" property="categoryLevel3Name"></result>
+    </resultMap>
 </mapper>
