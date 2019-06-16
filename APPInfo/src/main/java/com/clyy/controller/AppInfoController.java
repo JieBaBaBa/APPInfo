@@ -37,7 +37,7 @@ public class AppInfoController {
         List<AppInfo> appinfolist = appInfoService.findAllAppInfo();
         model.addAttribute("appinfolist",appinfolist);
 
-        return "appinfolist";
+        return "developer/appinfolist";
     }
 
     /**
@@ -55,7 +55,7 @@ public class AppInfoController {
 
         PageSupport<AppInfo> pageSupport = appInfoService.findAppInfoByPage(softwareName,pageIndex, pageSize);
         model.addAttribute("pageSupport",pageSupport);
-        return "appinfolist";
+        return "developer/appinfolist";
     }
 
     /**

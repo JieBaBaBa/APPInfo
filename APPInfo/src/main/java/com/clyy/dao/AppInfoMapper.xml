@@ -37,7 +37,7 @@
                  and softwareName like concat('%',#{softwareName},'%')
              </if>
          </trim>
-         GROUP BY app_info.id
+         GROUP BY ai.id
          LIMIT #{pageIndex},#{pageSize}
     </select>
 
