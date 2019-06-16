@@ -7,7 +7,7 @@
         select * from app_info
     </select>
     <!--分页查询-->
-    <select id="getAppInfoByPage" resultMap="AppInfo">
+    <select id="getAppInfoByPage" resultType="AppInfo">
         SELECT
             ai.id,
             ai.softwareName,
