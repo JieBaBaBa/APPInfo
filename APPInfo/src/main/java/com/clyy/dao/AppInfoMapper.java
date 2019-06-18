@@ -17,7 +17,7 @@ public interface AppInfoMapper {
     public List<AppInfo> findAllAppInfo();
 
     /**
-     * 分页查找
+     * Dev分页查找
      * @param pageIndex
      * @param pageSize
      * @return
@@ -27,8 +27,10 @@ public interface AppInfoMapper {
                                           @Param(value = "pageIndex") Integer pageIndex,
                                           @Param(value = "pageSize") Integer pageSize);
 
+
+
     /**
-     * 查总数量
+     * Dev查总数量
      * @return
      */
     public int getAppInfoCount(@Param(value = "softwareName") String softwareName);

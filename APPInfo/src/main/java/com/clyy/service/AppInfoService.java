@@ -15,12 +15,14 @@ public interface AppInfoService {
     public List<AppInfo> findAllAppInfo();
 
     /**
-     * 分页查找
+     * Dev分页查找
      * @param pageIndex
      * @param pageSize
      * @return
      */
     public PageSupport<AppInfo> findAppInfoByPage(String softwareName,String status,Integer pageIndex, Integer pageSize);
+
+
 
     /**
      * 查询所有状态

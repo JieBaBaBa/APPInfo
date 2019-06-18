@@ -7,25 +7,25 @@
         select * from app_info
     </select>
     
-    <!--分页查询-->
+    <!--Dec分页查询-->
     <select id="getAppInfoByPage" resultType="AppInfo">
         SELECT
-            ai.id,
-            ai.softwareName,
-            ai.APKName,
-            ai.softwareSize,
-            ai.flatformId,
-            ai.categoryLevel1,
-            ai.categoryLevel2,
-            ai.categoryLevel3,
-            ai.status,
-            ai.downloads,
-            av.versionNo,
-            dd.valueName statusName,
-            ddy.valueName flatformName,
-            ac1.categoryName categoryLevel1Name,
-            ac2.categoryName categoryLevel2Name,
-            ac3.categoryName categoryLevel3Name
+        ai.id,
+        ai.softwareName,
+        ai.APKName,
+        ai.softwareSize,
+        ai.flatformId,
+        ai.categoryLevel1,
+        ai.categoryLevel2,
+        ai.categoryLevel3,
+        ai.status,
+        ai.downloads,
+        av.versionNo,
+        dd.valueName flatformName,
+        ddy.valueName statusName,
+        ac1.categoryName categoryLevel1Name,
+        ac2.categoryName categoryLevel2Name,
+        ac3.categoryName categoryLevel3Name
         FROM app_info ai
         LEFT JOIN app_version av ON ai.id=av.appId
         JOIN data_dictionary dd ON ai.flatformId=dd.valueId AND dd.typeCode='APP_FLATFORM'
@@ -33,19 +33,20 @@
         JOIN app_category ac1 ON ai.categoryLevel1=ac1.id
         JOIN app_category ac2 ON ai.categoryLevel2=ac2.id
         JOIN app_category ac3 ON ai.categoryLevel3=ac3.id
-	     <trim prefix="where" prefixOverrides="and|or">
-             <if test="softwareName!=null and softwareName!=''">
-                 and softwareName like concat('%',#{softwareName},'%')
-             </if>
-             <if test="status!=null and status!=''">
-                 and status = #{status}
-             </if>
-         </trim>
-         GROUP BY ai.id
-         LIMIT #{pageIndex},#{pageSize}
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="softwareName!=null and softwareName!=''">
+                and softwareName like concat('%',#{softwareName},'%')
+            </if>
+            <if test="status!=null and status!=''">
+                and status = #{status}
+            </if>
+        </trim>
+        GROUP BY ai.id
+        LIMIT #{pageIndex},#{pageSize}
     </select>
+
     
-    <!--总数量-->
+    <!--Dec总数量-->
     <select id="getAppInfoCount" resultType="Integer">
         SELECT COUNT(1) FROM app_info
         <trim prefix="where" prefixOverrides="and|or">
@@ -54,7 +55,8 @@
             </if>
         </trim>
     </select>
-    
+
+
     <select id="getallstatus" resultType="dataDictionary">
         SELECT valueId,valueName FROM data_dictionary WHERE typeCode='APP_STATUS'
     </select>

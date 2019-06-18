@@ -25,7 +25,7 @@ public class AppInfoServiceImpl implements AppInfoService {
     }
 
     /**
-     * 分页
+     * Dec分页
      * @param softwareName
      * @param pageIndex
      * @param pageSize

@@ -3,5 +3,88 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.clyy.dao.BackEndMapper">
+    <!--BackEnd分页查询-->
+    <select id="getAuditInfoByPage" resultType="AppInfo">
+        SELECT
+        ai.*,
+        dd.valueName flatformName,
+        ac1.categoryName categoryLevel1Name,
+        ac2.categoryName categoryLevel2Name,
+        ac3.categoryName categoryLevel3Name,
+        ddy.valueName statusName,
+        av.versionNo
+        FROM app_info ai
+        LEFT JOIN app_version av ON ai.id=av.appId
+        JOIN data_dictionary dd ON ai.flatformId=dd.valueId AND dd.typeCode='APP_FLATFORM'
+        JOIN data_dictionary ddy ON ai.status=ddy.valueId AND ddy.typeCode='APP_STATUS'AND ddy.valueId='1'
+        JOIN app_category ac1 ON ai.categoryLevel1=ac1.id
+        JOIN app_category ac2 ON ai.categoryLevel2=ac2.id
+        JOIN app_category ac3 ON ai.categoryLevel3=ac3.id
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="softwareName!=null and softwareName!=''">
+                and softwareName like concat('%',#{softwareName},'%')
+            </if>
+            <if test="flatformId!=null and flatformId!=0">
+                and ai.flatformId=#{flatformId}
+            </if>
+            <if test="categoryLevel1!=null and categoryLevel1!=0">
+                and ai.categoryLevel1=#{categoryLevel1}
+            </if>
+            <if test="categoryLevel2!=null and categoryLevel2!=0">
+                and ai.categoryLevel2=#{categoryLevel2}
+            </if>
+            <if test="categoryLevel3!=null and categoryLevel3!=0">
+                and ai.categoryLevel3=#{categoryLevel3}
+            </if>
+        </trim>
+        GROUP BY ai.id ORDER BY ai.softwareSize
+        LIMIT #{pageIndex},#{pageSize}
+    </select>
 
+
+    <!--BackEnd总数量-->
+    <select id="getAuditInfoCount" resultType="Integer">
+        SELECT COUNT(1) FROM app_info ai LEFT JOIN app_version av ON ai.id=av.appId
+        JOIN data_dictionary dd ON ai.flatformId=dd.valueId AND dd.typeCode='APP_FLATFORM'
+        JOIN data_dictionary ddy ON ai.status=ddy.valueId AND ddy.typeCode='APP_STATUS'AND ddy.valueId='1'
+        JOIN app_category ac1 ON ai.categoryLevel1=ac1.id
+        JOIN app_category ac2 ON ai.categoryLevel2=ac2.id
+        JOIN app_category ac3 ON ai.categoryLevel3=ac3.id
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="softwareName!=null and softwareName!=''">
+                and softwareName like concat('%',#{softwareName},'%')
+            </if>
+            <if test="flatformId!=null and flatformId!=0">
+                and ai.flatformId=#{flatformId}
+            </if>
+            <if test="categoryLevel1!=null and categoryLevel1!=0">
+                and ai.categoryLevel1=#{categoryLevel1}
+            </if>
+            <if test="categoryLevel2!=null and categoryLevel2!=0">
+                and ai.categoryLevel2=#{categoryLevel2}
+            </if>
+            <if test="categoryLevel3!=null and categoryLevel3!=0">
+                and ai.categoryLevel3=#{categoryLevel3}
+            </if>
+        </trim>
+    </select>
+
+    <!--根据ID获取审核APP信息-->
+    <select id="getAppInfo" parameterType="integer" resultType="appInfo">
+             SELECT
+            ai.*,
+            dd.valueName flatformName,
+            ac1.categoryName categoryLevel1Name,
+            ac2.categoryName categoryLevel2Name,
+            ac3.categoryName categoryLevel3Name,
+             ddy.valueName statusName,
+             av.*
+        FROM app_info ai
+        LEFT JOIN app_version av ON ai.id=av.appId
+        JOIN data_dictionary dd ON ai.flatformId=dd.valueId AND dd.typeCode='APP_FLATFORM'
+        JOIN data_dictionary ddy ON ai.status=ddy.valueId AND ddy.typeCode='APP_STATUS'AND ddy.valueId='1'
+        JOIN app_category ac1 ON ai.categoryLevel1=ac1.id
+        JOIN app_category ac2 ON ai.categoryLevel2=ac2.id
+        JOIN app_category ac3 ON ai.categoryLevel3=ac3.id GROUP BY   ai.id ORDER BY ai.softwareSize
+    </select>
 </mapper>
