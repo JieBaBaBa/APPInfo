@@ -1,6 +1,7 @@
 package com.clyy.service.Impl;
 
 import com.clyy.dao.AppInfoMapper;
+import com.clyy.pojo.AppCategory;
 import com.clyy.pojo.AppInfo;
 import com.clyy.pojo.DataDictionary;
 import com.clyy.service.AppInfoService;
@@ -17,6 +18,7 @@ public class AppInfoServiceImpl implements AppInfoService {
 
     /**
      * 查找所有AppInfo
+     *
      * @return
      */
     @Override
@@ -26,13 +28,15 @@ public class AppInfoServiceImpl implements AppInfoService {
 
     /**
      * 分页
+     *
      * @param softwareName
      * @param pageIndex
      * @param pageSize
      * @return
      */
     @Override
-    public PageSupport<AppInfo> findAppInfoByPage(String softwareName,String status,Integer pageIndex, Integer pageSize) {
+    public PageSupport<AppInfo> findAppInfoByPage(String softwareName, String status, Integer flatformId,
+                                                  Integer categoryLevel1,Integer categoryLevel2, Integer categoryLevel3, Integer pageIndex, Integer pageSize) {
 
         PageSupport<AppInfo> pageSupport = new PageSupport<>();
         //总数量
@@ -41,8 +45,8 @@ public class AppInfoServiceImpl implements AppInfoService {
         pageSupport.setTotalCount(totalCount);
         pageSupport.setCurrentPageNo(pageIndex);
 
-        if (totalCount>0){
-            List<AppInfo> list = appInfoMapper.getAppInfoByPage(softwareName,status,pageSupport.getStarRow(), pageSize);
+        if (totalCount > 0) {
+            List<AppInfo> list = appInfoMapper.getAppInfoByPage(softwareName, status, flatformId, categoryLevel1,categoryLevel2,categoryLevel3, pageSupport.getStarRow(), pageSize);
             pageSupport.setList(list);
         }
 
@@ -51,10 +55,36 @@ public class AppInfoServiceImpl implements AppInfoService {
 
     /**
      * 查询所有状态
+     *
      * @return
      */
     @Override
-    public List<DataDictionary> getallstatus() {
-        return appInfoMapper.getallstatus();
+    public List<DataDictionary> getAllStatus() {
+        return appInfoMapper.getAllStatus();
+    }
+
+    /**
+     * 查询所有平台
+     *
+     * @return
+     */
+    @Override
+    public List<DataDictionary> getAllFlatformId() {
+        return appInfoMapper.getAllFlatformId();
+    }
+
+    @Override
+    public List<AppCategory> getAppCategoryByParentId(Integer parentId) {
+        return appInfoMapper.getAppCategoryByParentId(parentId);
+    }
+
+    @Override
+    public List<AppCategory> getAllcategoryLevel2() {
+        return appInfoMapper.getAllcategoryLevel2();
+    }
+
+    @Override
+    public List<AppCategory> getAllcategoryLevel3() {
+        return appInfoMapper.getAllcategoryLevel3();
     }
 }

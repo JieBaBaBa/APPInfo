@@ -54,4 +54,9 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  <!-- 当系统启动的时候，spring需要进行一些资源加载或者配置，都需要使用此监听去做 -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
 </web-app>
