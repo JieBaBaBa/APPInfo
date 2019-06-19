@@ -1,9 +1,12 @@
 package com.clyy.controller;
 
+import com.clyy.pojo.AppCategory;
 import com.clyy.pojo.AppInfo;
 import com.clyy.pojo.DataDictionary;
+import com.clyy.service.AppCategoryService;
 import com.clyy.service.AppInfoService;
 import com.clyy.service.BackEndService;
+import com.clyy.service.DataDictionaryService;
 import com.clyy.util.PageSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +24,12 @@ import java.util.List;
 public class BackEndController {
     @Resource
     private BackEndService backEndService;
+
+    @Resource
+    private AppCategoryService appCategoryService;
+
+    @Resource
+    private DataDictionaryService dataDictionaryService;
     /**
      * 后台管理登陆
      * @return
@@ -56,7 +65,16 @@ public class BackEndController {
 
         PageSupport<AppInfo> pageSupport = backEndService.findAuditInfoByPage(softwareName,
                 flatformId,categoryLevel1,categoryLevel2,categoryLevel3,pageIndex, pageSize);
+        List<DataDictionary> flatFormList=dataDictionaryService.findPlatforms();
+        List<AppCategory> categoryLevel1List = appCategoryService.findAppCategoryByParentId(null);
+        List<AppCategory> categoryLevel2List = appCategoryService.findAppCategoryLevel2();
+        List<AppCategory> categoryLevel3List = appCategoryService.findAppCategoryLevel3();
+
         model.addAttribute("pageSupport",pageSupport);
+        model.addAttribute("flatFormList",flatFormList);
+        model.addAttribute("categoryLevel1List",categoryLevel1List);
+        model.addAttribute("categoryLevel2List",categoryLevel2List);
+        model.addAttribute("categoryLevel3List",categoryLevel3List);
         return "backend/applist";
     }
 

@@ -20,11 +20,11 @@
         </trim>
     </select>
     <select id="getAppCategoryLevel2" resultType="appCategory">
-        SELECT ac1.* FROM app_category ac1,app_category pac WHERE ac1.`parentId`=pac.id AND pac.`parentId` IS NULL
+        SELECT ac1.* FROM app_category ac1,app_category pac WHERE ac1.parentId=pac.id AND pac.parentId IS NULL
     </select>
     <select id="getAppCategoryLevel3" resultType="appCategory">
-        SELECT * FROM `app_category` ac3 WHERE parentId IN(
-            SELECT ac1.id FROM `app_category` ac1,`app_category` pac WHERE ac1.`parentId`=pac.id AND pac.`parentId` IS NULL
+        SELECT * FROM app_category ac3 WHERE parentId IN(
+            SELECT ac1.id FROM app_category ac1,app_category pac WHERE ac1.parentId=pac.id AND pac.parentId IS NULL
         )
     </select>
 </mapper>

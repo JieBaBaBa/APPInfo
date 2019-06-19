@@ -11,14 +11,15 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
-@RequestMapping("/appCategory")
+@RequestMapping(value = "/appCategory")
 public class AppCategoryController {
 
     @Resource
     private AppCategoryService appCategoryService;
-    @RequestMapping("/getAppCategoryByParentId.json")
+    @RequestMapping(value ="/getAppCategoryByParentId.json")
     @ResponseBody
     public Object getAppCategoryByParentId(@RequestParam(value = "parentId",required = false) Integer parentId){
+
         List<AppCategory> appCategoryList = appCategoryService.findAppCategoryByParentId(parentId);
         return appCategoryList;
     }
