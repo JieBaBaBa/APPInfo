@@ -14,6 +14,7 @@ public interface BackEndMapper {
      */
     public List<AppInfo> getAuditInfoByPage(@Param(value = "softwareName") String softwareName,
                                             @Param(value = "flatformId")Integer flatformId,
+                                            @Param(value = "status") Integer status,
                                             @Param(value = "categoryLevel1")Integer categoryLevel1,
                                             @Param(value = "categoryLevel2")Integer categoryLevel2,
                                             @Param(value = "categoryLevel3")Integer categoryLevel3,

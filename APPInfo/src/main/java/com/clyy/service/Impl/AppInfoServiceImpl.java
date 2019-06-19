@@ -57,4 +57,25 @@ public class AppInfoServiceImpl implements AppInfoService {
     public List<DataDictionary> getallstatus() {
         return appInfoMapper.getallstatus();
     }
+
+    /**
+     *修改app审核状态
+     * @param status
+     * @param id
+     * @return
+     */
+    @Override
+    public boolean changeStatus(Integer status, Integer id) {
+        if (status ==1){
+            status = 2;
+        }
+        System.out.println("审核状态为:"+status);
+        int i = appInfoMapper.changeStatus(status, id);
+        if (i>0){
+            return true;
+        }
+        return false;
+    }
+
+
 }

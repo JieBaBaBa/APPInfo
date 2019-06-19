@@ -1,6 +1,7 @@
 package com.clyy.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class AppInfo {
     private Integer id;
@@ -13,6 +14,7 @@ public class AppInfo {
     private Integer devId;
     private String appInfo;
     private Integer status;
+    private String statusName;
     private Date onSaleDate;
     private Date offSaleDate;
     private Integer flatformId;
@@ -31,9 +33,9 @@ public class AppInfo {
     private String logoLocPath;
     private Integer versionId;
     private AppVersion appVersion;
-    private String flatformName;
-    private String statusName;
+    private List<AppVersion> versionList;
     private String versionNo;
+    private String flatformName;
 
     public String getVersionNo() {
         return versionNo;
@@ -282,4 +284,8 @@ public class AppInfo {
     public void setStatusName(String statusName) {
         this.statusName = statusName;
     }
+
+    public List<AppVersion> getVersionList() { return versionList; }
+
+    public void setVersionList(List<AppVersion> versionList) { this.versionList = versionList; }
 }

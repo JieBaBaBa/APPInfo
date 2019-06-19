@@ -1,5 +1,6 @@
 package com.clyy.service.Impl;
 
+import com.clyy.dao.AppVersionMapper;
 import com.clyy.dao.BackEndMapper;
 import com.clyy.pojo.AppInfo;
 import com.clyy.pojo.AppVersion;
@@ -14,6 +15,9 @@ import java.util.List;
 public class BackEndServiceImpl implements BackEndService {
     @Resource
      private BackEndMapper backEndMapper;
+
+    @Resource
+    private AppVersionMapper appVersionMapper;
     /**
      * BackEnd分页
      * @param softwareName
@@ -24,6 +28,7 @@ public class BackEndServiceImpl implements BackEndService {
     @Override
     public PageSupport<AppInfo> findAuditInfoByPage(String softwareName,
                                                     Integer flatformId,
+                                                    Integer status,
                                                     Integer categoryLevel1,
                                                     Integer categoryLevel2,
                                                     Integer categoryLevel3,
@@ -37,7 +42,7 @@ public class BackEndServiceImpl implements BackEndService {
         pageSupport.setCurrentPageNo(pageIndex);
 
         if (totalCount>0){
-            List<AppInfo> list = backEndMapper.getAuditInfoByPage(softwareName,flatformId,categoryLevel1,categoryLevel2,categoryLevel3,pageSupport.getStarRow(), pageSize);
+            List<AppInfo> list = backEndMapper.getAuditInfoByPage(softwareName,flatformId,status,categoryLevel1,categoryLevel2,categoryLevel3,pageSupport.getStarRow(), pageSize);
             pageSupport.setList(list);
         }
 
@@ -51,14 +56,9 @@ public class BackEndServiceImpl implements BackEndService {
      */
     @Override
     public AppInfo getAppInfo(Integer id) {
-  /*      AppInfo appInfo = appInfoMapper.getAppInfo(id);
-//        AppVersion lastAppVersion = appVersionMapper.getAppVersionByAppId(appInfo.getId());
-        List<AppVersion> lastAppVersion = appVersionMapper.getVersionListById(appInfo.getId());
-        AppVersion appVersion= appVersionMapper.getAppVersionByAppId(appInfo.getId());
-        appInfo.setVersionList(lastAppVersion);
-        appInfo.setLastAppVersion(appVersion);*/
-//        System.out.println("Service lastAppVersion --" + lastAppVersion.get(0).getVersionNo());
-       /* return appInfo;*/
-        return null;
+        AppInfo appInfo = backEndMapper.getAppInfo(id);
+       AppVersion appVersion=appVersionMapper.getAppVersionByAppId(appInfo.getId());
+       appInfo.setAppVersion(appVersion);
+        return appInfo;
     }
 }

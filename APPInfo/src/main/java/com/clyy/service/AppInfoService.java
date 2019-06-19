@@ -30,4 +30,13 @@ public interface AppInfoService {
      */
     public List<DataDictionary> getallstatus();
 
+
+    /**
+     *修改app审核状态
+     * @param status
+     * @param id
+     * @return
+     */
+    boolean changeStatus(Integer status, Integer id);
+
 }

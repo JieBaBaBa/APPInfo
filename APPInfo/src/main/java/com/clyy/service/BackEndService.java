@@ -12,6 +12,7 @@ public interface BackEndService {
      */
     public PageSupport<AppInfo> findAuditInfoByPage(String softwareName,
                                                     Integer flatformId,
+                                                    Integer status,
                                                     Integer categoryLevel1,
                                                     Integer categoryLevel2,
                                                     Integer categoryLevel3,

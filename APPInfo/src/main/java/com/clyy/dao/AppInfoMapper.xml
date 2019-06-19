@@ -79,4 +79,9 @@
         <result column="categoryLevel2Name" property="categoryLevel2Name"></result>
         <result column="categoryLevel3Name" property="categoryLevel3Name"></result>
     </resultMap>
+
+    <!--修改审查APP状态-->
+    <update id="changeStatus" parameterType="appInfo">
+        UPDATE app_info SET status = #{status} WHERE id = #{id}
+    </update>
 </mapper>

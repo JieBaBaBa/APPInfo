@@ -16,7 +16,7 @@
         FROM app_info ai
         LEFT JOIN app_version av ON ai.id=av.appId
         JOIN data_dictionary dd ON ai.flatformId=dd.valueId AND dd.typeCode='APP_FLATFORM'
-        JOIN data_dictionary ddy ON ai.status=ddy.valueId AND ddy.typeCode='APP_STATUS'AND ddy.valueId='1'
+        JOIN data_dictionary ddy ON ai.status=ddy.valueId AND ddy.typeCode='APP_STATUS'
         JOIN app_category ac1 ON ai.categoryLevel1=ac1.id
         JOIN app_category ac2 ON ai.categoryLevel2=ac2.id
         JOIN app_category ac3 ON ai.categoryLevel3=ac3.id
@@ -26,6 +26,9 @@
             </if>
             <if test="flatformId!=null and flatformId!=0">
                 and ai.flatformId=#{flatformId}
+            </if>
+            <if test="status!=null and status!=0">
+                and ai.status=#{status}
             </if>
             <if test="categoryLevel1!=null and categoryLevel1!=0">
                 and ai.categoryLevel1=#{categoryLevel1}
@@ -77,14 +80,17 @@
             ac1.categoryName categoryLevel1Name,
             ac2.categoryName categoryLevel2Name,
             ac3.categoryName categoryLevel3Name,
-             ddy.valueName statusName,
-             av.*
+             ddy.valueName statusName
         FROM app_info ai
-        LEFT JOIN app_version av ON ai.id=av.appId
-        JOIN data_dictionary dd ON ai.flatformId=dd.valueId AND dd.typeCode='APP_FLATFORM'
-        JOIN data_dictionary ddy ON ai.status=ddy.valueId AND ddy.typeCode='APP_STATUS'AND ddy.valueId='1'
+        LEFT JOIN data_dictionary dd ON ai.flatformId=dd.valueId AND dd.typeCode='APP_FLATFORM'
+        JOIN data_dictionary ddy ON ai.status=ddy.valueId AND ddy.typeCode='APP_STATUS'
         JOIN app_category ac1 ON ai.categoryLevel1=ac1.id
         JOIN app_category ac2 ON ai.categoryLevel2=ac2.id
-        JOIN app_category ac3 ON ai.categoryLevel3=ac3.id GROUP BY   ai.id ORDER BY ai.softwareSize
+        JOIN app_category ac3 ON ai.categoryLevel3=ac3.id
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="id!=null and id!=''">
+                and ai.id=#{id}
+            </if>
+        </trim>
     </select>
 </mapper>

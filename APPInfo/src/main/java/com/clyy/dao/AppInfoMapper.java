@@ -40,4 +40,13 @@ public interface AppInfoMapper {
      * @return
      */
     public List<DataDictionary> getallstatus();
+
+    /**
+     * 修改app审核状态
+     * @param status
+     * @param id
+     * @return
+     */
+    int changeStatus(@Param(value = "status")Integer status,
+                     @Param(value = "id") Integer id);
 }
