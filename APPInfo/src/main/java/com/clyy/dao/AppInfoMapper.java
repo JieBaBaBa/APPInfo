@@ -67,4 +67,18 @@ public interface AppInfoMapper {
      * @return
      */
     public List<AppCategory> getAllcategoryLevel3();
+
+    /**
+     * 增加appInfo
+     * @param appInfo
+     * @return
+     */
+    public int appInfoAdd(AppInfo appInfo);
+
+    /**
+     * 检查有没有重复的apkName
+     * @param apkName
+     * @return
+     */
+    public Integer checkAPKNameExist(@Param(value = "APKName") String apkName);
 }

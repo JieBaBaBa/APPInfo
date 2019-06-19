@@ -25,7 +25,8 @@
             ddy.valueName statusName,
             ac1.categoryName categoryLevel1Name,
             ac2.categoryName categoryLevel2Name,
-            ac3.categoryName categoryLevel3Name
+            ac3.categoryName categoryLevel3Name,
+            ai.creationDate
         FROM app_info ai
         LEFT JOIN app_version av ON ai.id=av.appId
         JOIN data_dictionary dd ON ai.flatformId=dd.valueId AND dd.typeCode='APP_FLATFORM'
@@ -53,8 +54,9 @@
                  and categoryLevel3 = #{categoryLevel3}
              </if>
          </trim>
-         GROUP BY ai.id
+         GROUP BY ai.id ORDER BY ai.creationDate DESC
          LIMIT #{pageIndex},#{pageSize}
+
     </select>
     
     <!--总数量-->
@@ -107,6 +109,41 @@
             SELECT ac1.id FROM app_category ac1,app_category ac2
             WHERE ac1.parentId=ac2.id AND ac2.parentId IS NULL
         )
+    </select>
+
+    <!--增加appInfo-->
+    <insert id="appInfoAdd" parameterType="appInfo">
+        INSERT INTO app_info (
+          softwareName,
+          APKName,
+          supportROM,
+          interfaceLanguage,
+          softwareSize,
+          downloads,
+          flatformId,
+          devId,
+          categoryLevel1,
+          categoryLevel2,
+          categoryLevel3,
+          appInfo,
+          logoPicPath,
+          logoLocPath,
+          creationDate,
+          status,
+          createdBy
+          )
+       VALUES(#{softwareName},#{APKName},
+       #{supportROM},#{interfaceLanguage},
+       #{softwareSize},#{downloads},
+       #{flatformId},#{devId},
+       #{categoryLevel1},#{categoryLevel2},
+       #{categoryLevel3},#{appInfo},
+       #{logoPicPath},#{logoLocPath},NOW(),
+       #{status},#{createdBy});
+    </insert>
+
+    <select id="checkAPKNameExist" resultType="Integer">
+        SELECT count(1),APKName FROM app_info WHERE APKName=#{APKName}
     </select>
 
     <!--appInfo的映射文件-->

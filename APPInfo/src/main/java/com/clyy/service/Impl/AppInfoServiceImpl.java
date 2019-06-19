@@ -7,6 +7,7 @@ import com.clyy.pojo.DataDictionary;
 import com.clyy.service.AppInfoService;
 import com.clyy.util.PageSupport;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -73,18 +74,51 @@ public class AppInfoServiceImpl implements AppInfoService {
         return appInfoMapper.getAllFlatformId();
     }
 
+    /**
+     * 查看所有的一级分类
+     * @param parentId
+     * @return
+     */
     @Override
     public List<AppCategory> getAppCategoryByParentId(Integer parentId) {
         return appInfoMapper.getAppCategoryByParentId(parentId);
     }
 
+    /**
+     * 查看所有的二级分类
+     * @return
+     */
     @Override
     public List<AppCategory> getAllcategoryLevel2() {
         return appInfoMapper.getAllcategoryLevel2();
     }
 
+    /**
+     * 查看所有的三级分类
+     * @return
+     */
     @Override
     public List<AppCategory> getAllcategoryLevel3() {
         return appInfoMapper.getAllcategoryLevel3();
+    }
+
+    /**
+     * 增加appInfo
+     * @param appInfo
+     * @return
+     */
+    @Override
+    public int appInfoAdd(AppInfo appInfo) {
+        return appInfoMapper.appInfoAdd(appInfo);
+    }
+
+    /**
+     * 检查有没有重复的apkName
+     * @param apkName
+     * @return
+     */
+    @Override
+    public Integer checkAPKNameExist(String apkName) {
+        return appInfoMapper.checkAPKNameExist(apkName);
     }
 }
