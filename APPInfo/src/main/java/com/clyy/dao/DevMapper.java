@@ -12,4 +12,5 @@ public interface DevMapper {
      * @return
      */
     public DevUser devLogin(@Param(value = "devCode") String devCode, @Param(value = "devPassword") String devPassword);
+
 }

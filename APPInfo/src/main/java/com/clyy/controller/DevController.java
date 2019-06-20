@@ -1,9 +1,12 @@
 package com.clyy.controller;
 
 import com.clyy.exception.LoginFailException;
+import com.clyy.pojo.AppCategory;
+import com.clyy.pojo.DataDictionary;
 import com.clyy.pojo.DevUser;
 import com.clyy.service.DevService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/dev")
@@ -72,6 +76,5 @@ public class DevController {
         request.setAttribute("message",e.getMessage());
         return "devlogin";
     }
-
 
 }

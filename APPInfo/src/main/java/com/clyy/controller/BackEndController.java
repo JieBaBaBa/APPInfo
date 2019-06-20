@@ -31,6 +31,9 @@ public class BackEndController {
     @Resource
     private AppInfoService appInfoService;
 
+    @Resource
+    private AppVersionService appVersionService;
+
     /**
      * 后台管理登陆
      * @return
@@ -127,8 +130,9 @@ public class BackEndController {
     public Object check(@RequestParam(value = "aid") Integer aid,
                         Model model){
         AppInfo appInfo = backEndService.getAppInfo(aid);
+        AppVersion appVersion=appVersionService.findAppVersionByAppId(aid);
         model.addAttribute("appInfo",appInfo);
-       model.addAttribute("appVersion",appInfo.getAppVersion());
+       model.addAttribute("appVersion",appVersion);
         return "backend/appcheck";
     }
 

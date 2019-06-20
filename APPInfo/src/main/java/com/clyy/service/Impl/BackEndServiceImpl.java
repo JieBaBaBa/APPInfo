@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Service(value = "backEndServiceImpl")
+@Service
 public class BackEndServiceImpl implements BackEndService {
     @Resource
      private BackEndMapper backEndMapper;
 
-    @Resource
-    private AppVersionMapper appVersionMapper;
+    //@Resource
+    //private AppVersionMapper appVersionMapper;
     /**
      * BackEnd分页
      * @param softwareName
@@ -57,8 +57,8 @@ public class BackEndServiceImpl implements BackEndService {
     @Override
     public AppInfo getAppInfo(Integer id) {
         AppInfo appInfo = backEndMapper.getAppInfo(id);
-       AppVersion appVersion=appVersionMapper.getAppVersionByAppId(appInfo.getId());
-       appInfo.setAppVersion(appVersion);
+       //AppVersion appVersion=appVersionMapper.getAppVersionByAppId(appInfo.getId());
+       //appInfo.setAppVersion(appVersion);
         return appInfo;
     }
 }
