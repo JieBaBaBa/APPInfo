@@ -43,17 +43,6 @@ public class AppInfoController {
         return "appinfolist";
     }
 
-    /**
-     * 查找所有AppInfo
-     * @return
-     */
-    @RequestMapping(value = "/appinfolist.html")
-    public String appInfoList(Model model){
-        List<AppInfo> appinfolist = appInfoService.findAllAppInfo();
-        model.addAttribute("appinfolist",appinfolist);
-
-        return "developer/appinfolist";
-    }
 
     /**
      * 分页查询
@@ -115,7 +104,7 @@ public class AppInfoController {
     }
 
     /**
-     * 增加appInfo，异步查询所i有平台
+     * 增加appInfo，异步查询所有平台
      * @return
      */
     @RequestMapping(value = "/flatformlist.json")
@@ -218,5 +207,38 @@ public class AppInfoController {
         return json;
     }
 
+    /**
+     * 跳转到修改页面
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping("appinfomodify.html")
+    public String appinfomodify(@RequestParam(value = "id") Integer id,Model model){
+        AppInfo appInfo = appInfoService.findAppInfoById(id);
+        model.addAttribute("appInfo",appInfo);
+        return "developer/appinfomodify";
+    }
+
+    @RequestMapping(value = "appinfomodifysave.html")
+    public String appinfomodifysave(AppInfo appInfo,HttpServletRequest request,HttpSession session){
+        DevUser devUser = (DevUser) session.getAttribute("devUser");
+        //判断有没有登陆的人
+        if (devUser==null){
+            request.setAttribute("message","请先登陆!");
+            return "devlogin";
+        }
+
+        //设置增加用户的人
+        appInfo.setDevId(devUser.getId());
+        appInfo.setModifyBy(devUser.getId());
+
+        int count = appInfoService.updateAppInfo(appInfo);
+        if (count>0){
+            return "redirect:/appInfo/list.html";
+        }
+        request.setAttribute("message","修改失败");
+        return "developer/appinfomodify";
+    }
 
 }

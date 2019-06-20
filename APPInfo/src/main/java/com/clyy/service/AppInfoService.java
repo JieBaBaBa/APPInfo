@@ -10,10 +10,10 @@ import java.util.List;
 public interface AppInfoService {
 
     /**
-     * 查找所有AppInfo
+     * 根据id查appinfo
      * @return
      */
-    public List<AppInfo> findAllAppInfo();
+    public AppInfo findAppInfoById(Integer id);
 
     /**
      * 分页查找
@@ -67,5 +67,21 @@ public interface AppInfoService {
      * @return
      */
     public Integer checkAPKNameExist(String apkName);
+
+
+    /**
+     *修改app审核状态
+     * @param status
+     * @param id
+     * @return
+     */
+    boolean changeStatus(Integer status, Integer id);
+
+    /**
+     * 修改appInfo信息
+     * @param appInfo
+     * @return
+     */
+    public int updateAppInfo(AppInfo appInfo);
 
 }

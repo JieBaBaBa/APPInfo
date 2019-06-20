@@ -3,8 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.clyy.dao.AppInfoMapper">
-    <select id="findAllAppInfo" resultType="appInfo">
-        select * from app_info
+    <select id="findAppInfoById" resultType="appInfo">
+        SELECT
+            ai.*,
+            dd.valueName statusName
+        FROM app_info ai,data_dictionary dd
+        WHERE
+        ai.status=dd.valueId
+        AND dd.typeCode='APP_STATUS'
+        AND ai.id=#{id}
     </select>
     
     <!--分页查询-->
@@ -145,6 +152,34 @@
     <select id="checkAPKNameExist" resultType="Integer">
         SELECT count(1),APKName FROM app_info WHERE APKName=#{APKName}
     </select>
+
+    <!--修改审查APP状态-->
+    <update id="changeStatus" parameterType="appInfo">
+        UPDATE app_info SET status = #{status} WHERE id = #{id}
+    </update>
+
+    <!--修改appInfo信息-->
+    <update id="updateAppInfo" parameterType="appInfo">
+        UPDATE  app_info SET
+          softwareName=#{softwareName},
+          APKName=#{APKName},
+          supportROM=#{supportROM},
+          interfaceLanguage=#{interfaceLanguage},
+          softwareSize=#{softwareSize},
+          downloads=#{downloads},
+          flatformId=#{flatformId},
+          devId=#{devId},
+          categoryLevel1=#{categoryLevel1},
+          categoryLevel2=#{categoryLevel2},
+          categoryLevel3=#{categoryLevel3},
+          appInfo=#{appInfo},
+          logoPicPath=#{logoPicPath},
+          logoLocPath=#{logoLocPath},
+          modifyDate=now(),
+          status=#{status},
+          modifyBy=#{modifyBy}
+          WHERE id=#{id}
+    </update>
 
     <!--appInfo的映射文件-->
     <resultMap id="AppInfo" type="appInfo">

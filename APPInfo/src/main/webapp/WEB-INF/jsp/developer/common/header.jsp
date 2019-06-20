@@ -66,6 +66,7 @@
 					<div id="sidebar-menu"
 						class="main_menu_side hidden-print main_menu">
 						<div class="menu_section">
+							<h3>开发者管理</h3>
 							<h3>${devUserSession.devName }</h3>
 							<ul class="nav side-menu">
 								<li><a><i class="fa fa-home"></i> APP账户管理 <span
@@ -81,7 +82,7 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath }/dev/flatform/app/list">APP维护</a>
+										<li><a href="${pageContext.request.contextPath }/appInfo/list.html">APP维护</a>
 										</li>
 									</ul></li>
 							</ul>
@@ -172,6 +173,7 @@
 					</nav>
 				</div>
 			</div>
+			<input type="hidden" id="path" name="path" value="${pageContext.request.contextPath }"/>
 			<!-- /top navigation -->
 			<div class="right_col" role="main">
 				<div class="">

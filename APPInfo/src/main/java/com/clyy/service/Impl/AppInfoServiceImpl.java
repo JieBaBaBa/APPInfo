@@ -18,13 +18,13 @@ public class AppInfoServiceImpl implements AppInfoService {
     private AppInfoMapper appInfoMapper;
 
     /**
-     * 查找所有AppInfo
-     *
+     * 根据id查appinfo
+     * @param id
      * @return
      */
     @Override
-    public List<AppInfo> findAllAppInfo() {
-        return appInfoMapper.findAllAppInfo();
+    public AppInfo findAppInfoById(Integer id) {
+        return appInfoMapper.findAppInfoById(id);
     }
 
     /**
@@ -120,5 +120,30 @@ public class AppInfoServiceImpl implements AppInfoService {
     @Override
     public Integer checkAPKNameExist(String apkName) {
         return appInfoMapper.checkAPKNameExist(apkName);
+    }
+
+    /**
+     *修改app审核状态
+     * @param status
+     * @param id
+     * @return
+     */
+    @Override
+    public boolean changeStatus(Integer status, Integer id) {
+        if (status ==1){
+            status = 2;
+        }
+        System.out.println("审核状态为:"+status);
+        int i = appInfoMapper.changeStatus(status, id);
+        if (i>0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int updateAppInfo(AppInfo appInfo) {
+        int count = appInfoMapper.updateAppInfo(appInfo);
+        return count;
     }
 }

@@ -12,10 +12,10 @@ import java.util.List;
 public interface AppInfoMapper {
 
     /**
-     * 查找所有AppInfo
+     * 根据id查appinfo
      * @return
      */
-    public List<AppInfo> findAllAppInfo();
+    public AppInfo findAppInfoById(@Param(value = "id") Integer id);
 
     /**
      * 分页查找
@@ -81,4 +81,20 @@ public interface AppInfoMapper {
      * @return
      */
     public Integer checkAPKNameExist(@Param(value = "APKName") String apkName);
+
+    /**
+     * 修改app审核状态
+     * @param status
+     * @param id
+     * @return
+     */
+    int changeStatus(@Param(value = "status")Integer status,
+                     @Param(value = "id") Integer id);
+
+    /**
+     * 修改appInfo信息
+     * @param appInfo
+     * @return
+     */
+    public int updateAppInfo(AppInfo appInfo);
 }

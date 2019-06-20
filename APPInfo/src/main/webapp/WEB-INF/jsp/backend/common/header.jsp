@@ -58,18 +58,13 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
+                <h3>后台管理</h3>
                 <h3>${userSession.userName }</h3>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> APP管理 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="${pageContext.request.contextPath }/manager/backend/app/list">APP审核</a></li>
-                      <li><a href="javascript:;">广告推广</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-edit"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="javascript:;">后台用户管理</a></li>
-                      <li><a href="javascript:;">开发者资质审核</a></li>
+                      <li><a href="${pageContext.request.contextPath }/backend/list.html">待审核列表</a></li>
+                      <li><a href="${pageContext.request.contextPath }/backend/listChecked.html">已审核列表</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bug"></i> 基础数据维护 <span class="fa fa-chevron-down"></span></a>
