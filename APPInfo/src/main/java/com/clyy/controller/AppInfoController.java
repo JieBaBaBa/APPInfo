@@ -1,6 +1,7 @@
 package com.clyy.controller;
 
 import com.clyy.pojo.AppInfo;
+import com.clyy.pojo.AppVersion;
 import com.clyy.pojo.DataDictionary;
 import com.clyy.service.AppInfoService;
 import com.clyy.util.PageSupport;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -59,7 +63,7 @@ public class AppInfoController {
         model.addAttribute("pageSupport",pageSupport);
         List<DataDictionary> statusList = appInfoService.getallstatus();
         model.addAttribute("statusList",statusList);
-        return "developer/appinfolist";
+        return "developer/appinfolist" ;
     }
 
     /**
@@ -71,5 +75,18 @@ public class AppInfoController {
         return "developer/appinfoadd";
     }
 
+
+    @RequestMapping("/appversionmodify")
+    public String appversionmodify(@RequestParam("vid")String versionId,
+                                   @RequestParam("aid")String appInfoId,
+                                   Model model){
+
+        List<AppVersion> appVersion=appInfoService.findAppVersion(appInfoId);
+        //System.out.println("啊啊啊啊啊"+appVersion.toString());
+        //hSRequest.setAttribute("appVersion",appVersion);
+
+        model.addAttribute("appVersionList",appVersion);
+        return "developer/appversionmodify";
+    }
 
 }

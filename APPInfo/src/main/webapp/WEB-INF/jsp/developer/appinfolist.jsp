@@ -198,10 +198,10 @@
                         <li><a class="addVersion" appinfoid="${appInfo.id }" data-toggle="tooltip" data-placement="top" title="" data-original-title="新增APP版本信息">新增版本</a>
                         </li>
                         <li><a class="modifyVersion" 
-											appinfoid="${appInfo.id }" versionid="${appInfo.versionId }" status="${appInfo.status }" 
+											appinfoid="${appInfo.id }" versionid="${appInfo.versionId }" status="${appInfo.status }"
 											statusname="${appInfo.statusName }"											
 											data-toggle="tooltip" data-placement="top" title="" data-original-title="修改APP最新版本信息">修改版本</a>
-                        </li>
+						  </li>
                         <li><a  class="modifyAppInfo" 
 											appinfoid="${appInfo.id }" status="${appInfo.status }" statusname="${appInfo.statusName }"
 											data-toggle="tooltip" data-placement="top" title="" data-original-title="修改APP基础信息">修改</a></li>

@@ -21,6 +21,8 @@
             ai.status,
             ai.downloads,
             av.versionNo,
+            /*追加查询versionId*/
+            ai.versionId,
             dd.valueName statusName,
             ddy.valueName flatformName,
             ac1.categoryName categoryLevel1Name,

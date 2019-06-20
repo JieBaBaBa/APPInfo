@@ -74,4 +74,8 @@ public class DevController {
     }
 
 
+    @RequestMapping("/list")
+    public String list(){
+        return "redirect:/appInfo/list.html";
+    }
 }

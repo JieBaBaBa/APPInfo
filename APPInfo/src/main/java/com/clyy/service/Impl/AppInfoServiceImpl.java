@@ -1,7 +1,9 @@
 package com.clyy.service.Impl;
 
 import com.clyy.dao.AppInfoMapper;
+import com.clyy.dao.AppVersionMapper;
 import com.clyy.pojo.AppInfo;
+import com.clyy.pojo.AppVersion;
 import com.clyy.pojo.DataDictionary;
 import com.clyy.service.AppInfoService;
 import com.clyy.util.PageSupport;
@@ -15,6 +17,8 @@ public class AppInfoServiceImpl implements AppInfoService {
     @Resource
     private AppInfoMapper appInfoMapper;
 
+    @Resource
+    private AppVersionMapper appVersionMapper;
     /**
      * 查找所有AppInfo
      * @return
@@ -56,5 +60,17 @@ public class AppInfoServiceImpl implements AppInfoService {
     @Override
     public List<DataDictionary> getallstatus() {
         return appInfoMapper.getallstatus();
+    }
+
+
+    /**
+     * 所要修改的app的版本信息
+     * @param versionId
+     * @param appInfoId
+     * @return
+     */
+    @Override
+    public List<AppVersion> findAppVersion(String appInfoId) {
+        return appVersionMapper.findAppVersion(appInfoId);
     }
 }
