@@ -3,9 +3,9 @@
 <%@include file="common/header.jsp"%>
 <div class="page-title">
 	<div class="title_left">
-		<h3>
+		<h4>
 			欢迎你：${devUser.devName }<strong> | 角色：开发者账户</strong>
-		</h3>
+		</h4>
 	</div>
 </div>
 <div class="clearfix"></div>

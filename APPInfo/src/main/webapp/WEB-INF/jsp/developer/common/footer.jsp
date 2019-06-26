@@ -3,7 +3,9 @@
 <!-- /page content -->
 <!-- footer content -->
 <footer>
-	<div class="pull-right">2016 All Rights Reserved.</div>
+	<div class="pull-right">
+		<p>Made from 007</p>
+	</div>
 	<div class="clearfix"></div>
 </footer>
 <!-- /footer content -->

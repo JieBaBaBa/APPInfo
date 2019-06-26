@@ -6,7 +6,7 @@
 <!-- footer content -->
 	<footer>
 	  <div class="pull-right">
-	    ©2016 All Rights Reserved. 
+          <p>Made from 007</p>
 	  </div>
 	  <div class="clearfix"></div>
 	</footer>

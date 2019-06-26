@@ -1,6 +1,7 @@
 package com.clyy.service;
 
 import com.clyy.pojo.AppInfo;
+import com.clyy.pojo.BackendUser;
 import com.clyy.util.PageSupport;
 
 public interface BackEndService {
@@ -18,9 +19,16 @@ public interface BackEndService {
                                                     Integer categoryLevel3,
                                                     Integer pageIndex,
                                                     Integer pageSize);
+                                                    //获取单个app信息到审核列表中
+                                                    AppInfo getAppInfo(Integer id);
 
-    //获取单个app信息到审核列表中
-    AppInfo getAppInfo(Integer id);
+    /**
+     * 登陆验证
+     * @param userCode
+     * @param userPassword
+     * @return
+     */
+    public BackendUser userLogin(String userCode, String userPassword);
 
 
 }

@@ -50,7 +50,7 @@
 
               <div class="separator">
                 <div>
-                  <p>©2016 All Rights Reserved. </p>
+                  <p>Made from 007</p>
                 </div>
               </div>
             </form>

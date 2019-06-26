@@ -3,12 +3,14 @@ package com.clyy.service.Impl;
 import com.clyy.dao.AppInfoMapper;
 import com.clyy.pojo.AppCategory;
 import com.clyy.pojo.AppInfo;
+import com.clyy.pojo.AppVersion;
 import com.clyy.pojo.DataDictionary;
 import com.clyy.service.AppInfoService;
 import com.clyy.util.PageSupport;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service(value = "appInfoServiceImpl")
@@ -41,7 +43,7 @@ public class AppInfoServiceImpl implements AppInfoService {
 
         PageSupport<AppInfo> pageSupport = new PageSupport<>();
         //总数量
-        int totalCount = appInfoMapper.getAppInfoCount(softwareName);
+        int totalCount = appInfoMapper.getAppInfoCount(softwareName,status,flatformId,categoryLevel1,categoryLevel2,categoryLevel3);
         pageSupport.setPageSize(pageSize);
         pageSupport.setTotalCount(totalCount);
         pageSupport.setCurrentPageNo(pageIndex);
@@ -146,4 +148,71 @@ public class AppInfoServiceImpl implements AppInfoService {
         int count = appInfoMapper.updateAppInfo(appInfo);
         return count;
     }
+
+    /**
+     * 增加APP版本
+     * @param appVersion
+     * @return
+     */
+    @Override
+    public int addAppVersion(AppVersion appVersion) {
+        int i = appInfoMapper.addVersion(
+                appVersion.getAppId(),
+                appVersion.getVersionNo(),
+                appVersion.getVersionInfo(),
+                3,
+                appVersion.getDownloadLink(),
+                appVersion.getVersionSize(),
+                1,
+                new Date(),
+                appVersion.getApkLocPath(),
+                appVersion.getApkFileName());
+
+        return i;
+    }
+
+
+
+    /**
+     * 上架和下架
+     * @param appInfoId
+     * @param saleswitch 用于判定该APP当前是上架还是下架状态
+     * @return
+     */
+    @Override
+    public String updateAppStatus(Integer appInfoId, String saleswitch) {
+        int afterStatus=4;
+        if(saleswitch.equals("close")){
+            afterStatus=5;
+        }
+        int count =appInfoMapper.updateAppStatus(appInfoId,afterStatus);
+        return count>0?"success":"failed";
+    }
+
+    /**
+     * 删除app
+     * @param appId
+     * @return
+     */
+    @Override
+    public boolean delApp(Integer appId) {
+        int i = appInfoMapper.delApp(appId);
+        if (i>0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 查看单个app信息
+     * @param id
+     * @return
+     */
+    @Override
+    public AppInfo getAppInfo(Integer id) {
+        AppInfo appInfo = appInfoMapper.getAppInfo(id);
+        return appInfo;
+    }
+
 }

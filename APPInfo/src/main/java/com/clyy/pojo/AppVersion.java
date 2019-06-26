@@ -9,13 +9,33 @@ public class AppVersion {
     private String versionInfo;
     private Integer publishStatus;
     private String downloadLink;
-    private Float versionSize;
+    private float versionSize;
     private Integer createdBy;
     private Date creationDate;
     private Integer modifyBy;
     private Date modifyDate;
     private String apkLocPath;
     private String apkFileName;
+    //追加appName
+    //追加publishStatusName
+    private String appName;//APP软件名称
+    private String publishStatusName;//发布状态名称
+
+    public String getAppName() {
+        return appName;
+    }
+
+    public void setAppName(String appName) {
+        this.appName = appName;
+    }
+
+    public String getPublishStatusName() {
+        return publishStatusName;
+    }
+
+    public void setPublishStatusName(String publishStatusName) {
+        this.publishStatusName = publishStatusName;
+    }
 
     public Integer getId() {
         return id;
@@ -65,11 +85,11 @@ public class AppVersion {
         this.downloadLink = downloadLink;
     }
 
-    public Float getVersionSize() {
+    public float getVersionSize() {
         return versionSize;
     }
 
-    public void setVersionSize(Float versionSize) {
+    public void setVersionSize(float versionSize) {
         this.versionSize = versionSize;
     }
 
@@ -119,5 +139,25 @@ public class AppVersion {
 
     public void setApkFileName(String apkFileName) {
         this.apkFileName = apkFileName;
+    }
+
+    @Override
+    public String toString() {
+        return "AppVersion{" +
+                "id=" + id +
+                ", appId=" + appId +
+                ", versionNo='" + versionNo + '\'' +
+                ", versionInfo='" + versionInfo + '\'' +
+                ", publishStatus=" + publishStatus +
+                ", downloadLink='" + downloadLink + '\'' +
+                ", versionSize=" + versionSize +
+                ", createdBy=" + createdBy +
+                ", creationDate=" + creationDate +
+                ", modifyBy=" + modifyBy +
+                ", modifyDate=" + modifyDate +
+                ", apkLocPath='" + apkLocPath + '\'' +
+                ", apkFileName='" + apkFileName + '\'' +
+                ", appName='" + appName + '\'' +
+                '}';
     }
 }

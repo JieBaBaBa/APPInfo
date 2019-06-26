@@ -1,6 +1,7 @@
 package com.clyy.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.clyy.pojo.AppCategory;
 import com.clyy.pojo.AppInfo;
 import com.clyy.pojo.DataDictionary;
@@ -190,7 +191,12 @@ public class AppInfoController {
         return "developer/appinfoadd";
 
     }
-    
+
+    /**
+     * 异步查询apk是否存在
+     * @param apkName
+     * @return
+     */
     @RequestMapping(value = "/apkexist.json")
     @ResponseBody
     public Object checkAPKNameExist(@RequestParam(value = "APKName") String apkName){
@@ -220,6 +226,13 @@ public class AppInfoController {
         return "developer/appinfomodify";
     }
 
+    /**
+     * 保存修改
+     * @param appInfo
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "appinfomodifysave.html")
     public String appinfomodifysave(AppInfo appInfo,HttpServletRequest request,HttpSession session){
         DevUser devUser = (DevUser) session.getAttribute("devUser");
@@ -241,4 +254,20 @@ public class AppInfoController {
         return "developer/appinfomodify";
     }
 
+
+    /**
+     * 上下架操作
+     */
+    @RequestMapping("/sale.json")
+    @ResponseBody
+    public Object sale(@RequestParam(value="appInfoId",required = false)Integer appInfoId,
+                       @RequestParam(value="saleswitch",required = false)String saleswitch){
+
+        String  resultMsg=appInfoService.updateAppStatus(appInfoId,saleswitch);
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("resultMsg",resultMsg);
+        jsonObject.put("errorCode",'0');
+        String json= JSON.toJSONString(jsonObject);
+        return json;
+    }
 }

@@ -39,7 +39,7 @@
 			<div class="col-md-3 left_col menu_fixed">
 				<div class="left_col scroll-view">
 					<div class="navbar nav_title" style="border: 0;">
-						<a href="${pageContext.request.contextPath }/dev/flatform/main" class="site_title"><i class="fa fa-paw"></i> <span>APP
+						<a href="${pageContext.request.contextPath }/dev/main.html" class="site_title"><i class="fa fa-paw"></i> <span>APP
 								BMS</span>
 						</a>
 					</div>
@@ -55,7 +55,7 @@
 						</div>
 						<div class="profile_info">
 							<span>Welcome,</span>
-							<h2>${devUser.devCode }</h2>
+							<span><strong>${devUser.devCode }</strong></span>
 						</div>
 					</div>
 					<!-- /menu profile quick info -->
@@ -66,7 +66,7 @@
 					<div id="sidebar-menu"
 						class="main_menu_side hidden-print main_menu">
 						<div class="menu_section">
-							<h3>开发者管理</h3>
+							<h3>开发者</h3>
 							<h3>${devUserSession.devName }</h3>
 							<ul class="nav side-menu">
 								<li><a><i class="fa fa-home"></i> APP账户管理 <span

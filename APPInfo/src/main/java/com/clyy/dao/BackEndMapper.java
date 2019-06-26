@@ -1,6 +1,7 @@
 package com.clyy.dao;
 
 import com.clyy.pojo.AppInfo;
+import com.clyy.pojo.BackendUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public interface BackEndMapper {
      */
     public int getAuditInfoCount(@Param(value = "softwareName") String softwareName,
                                  @Param(value = "flatformId") Integer flatformId,
+                                 @Param(value = "status") Integer status,
                                  @Param(value = "categoryLevel1") Integer categoryLevel1,
                                  @Param(value = "categoryLevel2") Integer categoryLevel2,
                                  @Param(value = "categoryLevel3") Integer categoryLevel3);
@@ -36,7 +38,15 @@ public interface BackEndMapper {
      * @param id
      * @return
      */
-
     AppInfo getAppInfo(@Param(value = "id") Integer id);
+
+
+    /**
+     * 登陆验证
+     * @param userCode
+     * @param userPassword
+     * @return
+     */
+    BackendUser userLogin(@Param("userCode") String userCode, @Param("userPassword") String userPassword);
 
 }

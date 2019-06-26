@@ -49,7 +49,7 @@
     <select id="getAuditInfoCount" resultType="Integer">
         SELECT COUNT(1) FROM app_info ai LEFT JOIN app_version av ON ai.id=av.appId
         JOIN data_dictionary dd ON ai.flatformId=dd.valueId AND dd.typeCode='APP_FLATFORM'
-        JOIN data_dictionary ddy ON ai.status=ddy.valueId AND ddy.typeCode='APP_STATUS'AND ddy.valueId='1'
+        JOIN data_dictionary ddy ON ai.status=ddy.valueId AND ddy.typeCode='APP_STATUS'
         JOIN app_category ac1 ON ai.categoryLevel1=ac1.id
         JOIN app_category ac2 ON ai.categoryLevel2=ac2.id
         JOIN app_category ac3 ON ai.categoryLevel3=ac3.id
@@ -59,6 +59,9 @@
             </if>
             <if test="flatformId!=null and flatformId!=0">
                 and ai.flatformId=#{flatformId}
+            </if>
+            <if test="status!=null and status!=0">
+                and ai.status=#{status}
             </if>
             <if test="categoryLevel1!=null and categoryLevel1!=0">
                 and ai.categoryLevel1=#{categoryLevel1}
@@ -92,5 +95,10 @@
                 and ai.id=#{id}
             </if>
         </trim>
+    </select>
+
+    <!--BackEnd登陆-->
+    <select id="userLogin" resultType="backendUser">
+        SELECT * FROM backend_user WHERE userCode=#{userCode} AND userPassword=#{userPassword}
     </select>
 </mapper>

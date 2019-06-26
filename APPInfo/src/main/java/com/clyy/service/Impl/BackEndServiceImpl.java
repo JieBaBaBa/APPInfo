@@ -1,9 +1,8 @@
 package com.clyy.service.Impl;
 
-import com.clyy.dao.AppVersionMapper;
 import com.clyy.dao.BackEndMapper;
 import com.clyy.pojo.AppInfo;
-import com.clyy.pojo.AppVersion;
+import com.clyy.pojo.BackendUser;
 import com.clyy.service.BackEndService;
 import com.clyy.util.PageSupport;
 import org.springframework.stereotype.Service;
@@ -36,7 +35,7 @@ public class BackEndServiceImpl implements BackEndService {
                                                     Integer pageSize) {
         PageSupport<AppInfo> pageSupport = new PageSupport<>();
         //总数量
-        int totalCount = backEndMapper.getAuditInfoCount(softwareName,flatformId,categoryLevel1,categoryLevel2,categoryLevel3);
+        int totalCount = backEndMapper.getAuditInfoCount(softwareName,flatformId,status,categoryLevel1,categoryLevel2,categoryLevel3);
         pageSupport.setPageSize(pageSize);
         pageSupport.setTotalCount(totalCount);
         pageSupport.setCurrentPageNo(pageIndex);
@@ -60,5 +59,16 @@ public class BackEndServiceImpl implements BackEndService {
        //AppVersion appVersion=appVersionMapper.getAppVersionByAppId(appInfo.getId());
        //appInfo.setAppVersion(appVersion);
         return appInfo;
+    }
+
+    /**
+     * BackEnd登陆
+     * @param userCode
+     * @param userPassword
+     * @return
+     */
+    @Override
+    public BackendUser userLogin(String userCode, String userPassword){
+        return backEndMapper.userLogin(userCode,userPassword);
     }
 }

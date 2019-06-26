@@ -2,6 +2,7 @@ package com.clyy.service;
 
 import com.clyy.pojo.AppCategory;
 import com.clyy.pojo.AppInfo;
+import com.clyy.pojo.AppVersion;
 import com.clyy.pojo.DataDictionary;
 import com.clyy.util.PageSupport;
 
@@ -83,5 +84,36 @@ public interface AppInfoService {
      * @return
      */
     public int updateAppInfo(AppInfo appInfo);
+
+
+
+    /**
+     * 增加APP版本
+     * @param appVersion
+     * @return
+     */
+    int addAppVersion(AppVersion appVersion);
+
+    /**
+     * 上架和下架
+     * @param appInfoId
+     * @param saleswitch 用于判定该APP当前是上架还是下架状态
+     * @return
+     */
+    public String updateAppStatus(Integer appInfoId,String saleswitch);
+
+    /**
+     * 删除app
+     * @param id
+     * @return
+     */
+    boolean delApp(Integer id);
+
+    /**
+     * 查看单个app信息
+     * @param id
+     * @return
+     */
+    AppInfo getAppInfo(Integer id);
 
 }
