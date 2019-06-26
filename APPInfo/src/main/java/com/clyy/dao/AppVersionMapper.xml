@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clyy.dao.AppVersionMapper">
+
+    <select id="getAppVersionByAppId" parameterType="int" resultType="appVersion">
+      SELECT av.* FROM app_version av,app_info ai WHERE av.id=ai.versionId AND ai.id=#{appId}
+    </select>
+    
+    <select id="getVersionListById" parameterType="int" resultType="appVersion">
+        SELECT ai.softwareName AS appName,dd.valueName AS publishStatusName,av.* FROM app_info ai, app_version av,data_dictionary dd
+        WHERE
+        ai.id = #{appId}
+        AND av.appId=ai.id
+        AND AV.publishStatus=dd.valueId
+        AND dd.typeCode='PUBLISH_STATUS'
+    </select>
+
+
+
+    <!--查询最新版本信息-->
+    <select id="findAppVersion" resultType="appVersion">
+        select ai.softwareName appName,
+            dd.valueName publishStatusName,
+            av.*
+        from app_version  av,
+            app_info ai,
+            data_dictionary dd
+        WHERE dd.typeCode='APP_STATUS'
+            and av.publishStatus=dd.valueId
+            and av.appId=#{appInfoId}
+            and ai.id=#{appInfoId}
+        group by av.id DESC
+    </select>
+
+    <!--更新最新版本信息-->
+
+    <update id="updateAppVersion">
+        UPDATE app_version av
+        set av.versionSize=#{versionSize},
+        av.versionInfo=#{versionInfo}
+         WHERE av.versionNo=#{versionNo}
+    </update>
+</mapper>

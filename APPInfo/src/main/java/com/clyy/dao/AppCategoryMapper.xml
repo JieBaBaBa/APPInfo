@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clyy.dao.AppCategoryMapper">
+    <select id="getAppCategoryByParentId" parameterType="int" resultType="appCategory">
+        SELECT * FROM app_category
+        <trim prefix="where" prefixOverrides="and|or">
+            <choose>
+                <when test="parentId!=null and parentId!=0">
+                    <!--使用父级分类查子分类   2  3-->
+                    parentId=#{parentId}
+                </when>
+                <otherwise>
+                    <!--一级分类 -->
+                    parentId IS NULL
+                </otherwise>
+            </choose>
+
+        </trim>
+    </select>
+    <select id="getAppCategoryLevel2" resultType="appCategory">
+        SELECT ac1.* FROM app_category ac1,app_category pac WHERE ac1.parentId=pac.id AND pac.parentId IS NULL
+    </select>
+    <select id="getAppCategoryLevel3" resultType="appCategory">
+        SELECT * FROM app_category ac3 WHERE parentId IN(
+            SELECT ac1.id FROM app_category ac1,app_category pac WHERE ac1.parentId=pac.id AND pac.parentId IS NULL
+        )
+    </select>
+</mapper>
