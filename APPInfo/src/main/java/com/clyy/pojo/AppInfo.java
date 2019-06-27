@@ -30,7 +30,7 @@ public class AppInfo {
     private String logoPicPath;
     private String logoLocPath;
     private Integer versionId;
-    private AppVersion appVersion;
+    private AppVersion latestversion;
     private String flatformName;
     private String statusName;
     private String versionNo;
@@ -259,13 +259,9 @@ public class AppInfo {
         this.versionId = versionId;
     }
 
-    public AppVersion getAppVersion() {
-        return appVersion;
-    }
+    public AppVersion getLatestversion() { return latestversion; }
 
-    public void setAppVersion(AppVersion appVersion) {
-        this.appVersion = appVersion;
-    }
+    public void setLatestversion(AppVersion latestversion) { this.latestversion = latestversion; }
 
     public String getFlatformName() {
         return flatformName;

@@ -11,16 +11,16 @@
         ac1.categoryName categoryLevel1Name,
         ac2.categoryName categoryLevel2Name,
         ac3.categoryName categoryLevel3Name,
-        ddy.valueName statusName,
-        av.versionNo
-        FROM app_info ai
-        LEFT JOIN app_version av ON ai.id=av.appId
-        JOIN data_dictionary dd ON ai.flatformId=dd.valueId AND dd.typeCode='APP_FLATFORM'
-        JOIN data_dictionary ddy ON ai.status=ddy.valueId AND ddy.typeCode='APP_STATUS'
-        JOIN app_category ac1 ON ai.categoryLevel1=ac1.id
-        JOIN app_category ac2 ON ai.categoryLevel2=ac2.id
-        JOIN app_category ac3 ON ai.categoryLevel3=ac3.id
+        ddy.valueName statusName
+        FROM app_info ai,data_dictionary dd,data_dictionary ddy,app_category ac1,app_category ac2,app_category ac3
         <trim prefix="where" prefixOverrides="and|or">
+            ai.flatformId=dd.valueId
+            and dd.typeCode='APP_FLATFORM'
+            and ai.status=ddy.valueId
+            and ddy.typeCode='APP_STATUS'
+            and ai.categoryLevel1=ac1.id
+            and ai.categoryLevel2=ac2.id
+            and ai.categoryLevel3=ac3.id
             <if test="softwareName!=null and softwareName!=''">
                 and softwareName like concat('%',#{softwareName},'%')
             </if>
@@ -40,19 +40,14 @@
                 and ai.categoryLevel3=#{categoryLevel3}
             </if>
         </trim>
-        GROUP BY ai.id ORDER BY ai.softwareSize
+        ORDER BY ai.softwareSize
         LIMIT #{pageIndex},#{pageSize}
     </select>
 
 
     <!--BackEnd总数量-->
     <select id="getAuditInfoCount" resultType="Integer">
-        SELECT COUNT(1) FROM app_info ai LEFT JOIN app_version av ON ai.id=av.appId
-        JOIN data_dictionary dd ON ai.flatformId=dd.valueId AND dd.typeCode='APP_FLATFORM'
-        JOIN data_dictionary ddy ON ai.status=ddy.valueId AND ddy.typeCode='APP_STATUS'
-        JOIN app_category ac1 ON ai.categoryLevel1=ac1.id
-        JOIN app_category ac2 ON ai.categoryLevel2=ac2.id
-        JOIN app_category ac3 ON ai.categoryLevel3=ac3.id
+        SELECT COUNT(1) FROM app_info ai
         <trim prefix="where" prefixOverrides="and|or">
             <if test="softwareName!=null and softwareName!=''">
                 and softwareName like concat('%',#{softwareName},'%')

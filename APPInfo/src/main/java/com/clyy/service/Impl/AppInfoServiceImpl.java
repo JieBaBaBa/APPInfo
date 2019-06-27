@@ -171,6 +171,20 @@ public class AppInfoServiceImpl implements AppInfoService {
         return i;
     }
 
+    /**
+     * 更新APP的最新版本
+     * @param versionId
+     * @param id
+     * @return
+     */
+    @Override
+    public boolean changeVersion(Integer versionId, Integer id) {
+        int i = appInfoMapper.changeVersion(versionId, id);
+        if (i>0){
+            return true;
+        }
+        return false;
+    }
 
 
     /**

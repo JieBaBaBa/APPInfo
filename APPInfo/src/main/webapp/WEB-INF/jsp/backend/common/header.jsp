@@ -64,7 +64,7 @@
                   <li><a><i class="fa fa-home"></i> APP管理 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="${pageContext.request.contextPath }/backend/list.html">待审核列表</a></li>
-                      <li><a href="${pageContext.request.contextPath }/backend/listChecked.html">已审核列表</a></li>
+                      <li><a href="${pageContext.request.contextPath }/backend/listChecked.html">审核通过列表</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bug"></i> 基础数据维护 <span class="fa fa-chevron-down"></span></a>

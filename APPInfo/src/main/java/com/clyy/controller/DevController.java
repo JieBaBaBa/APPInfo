@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -152,7 +153,7 @@ public class DevController {
             //检查文件的大小
             if (multipartFile.getSize()>1024*1024*50){
                 //不符合要求，报错
-                request.setAttribute("message","上传的文件不能大于50M");
+                request.setAttribute("mess","上传的文件不能大于50M");
                 return "developer/appversionadd";
             }
 
@@ -182,6 +183,21 @@ public class DevController {
         //保存数据--->service--->dao
         int count = appInfoService.addAppVersion(appVersion);
         if (count>0){
+            Date date=new Date();
+            Long cha=0L;
+            Integer versionId=null;
+            List<AppVersion> appVersionList=appVersionService.findVersionListById(appVersion.getAppId());
+
+            for(AppVersion appVersion1:appVersionList){
+                if(date.getTime()-appVersion1.getCreationDate().getTime()>cha){
+                    cha=date.getTime()-appVersion1.getCreationDate().getTime();
+                    versionId=appVersion1.getId();
+                }else{
+                    versionId=appVersion1.getId();
+                }
+            }
+
+            appInfoService.changeVersion(versionId,appVersion.getAppId());
             return "redirect:/appInfo/list.html";
         }
         request.setAttribute("message","增加APP版本失败!");

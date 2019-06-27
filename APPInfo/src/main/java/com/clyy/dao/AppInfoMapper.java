@@ -130,6 +130,15 @@ public interface AppInfoMapper {
                    @Param(value = "apkFileName") String apkFileName);
 
     /**
+     * 更新app最新版本
+     * @param versionId
+     * @param id
+     * @return
+     */
+    int changeVersion(@Param(value = "versionId")Integer versionId,
+                      @Param(value = "id") Integer id);
+
+    /**
      * 更新上架或下架状态
      * @param appInfoId
      * @param afterStatus

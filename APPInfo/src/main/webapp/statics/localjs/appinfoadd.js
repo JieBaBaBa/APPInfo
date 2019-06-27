@@ -113,23 +113,29 @@ $(function(){
 	});
 
 
+
 	APKName = $("#APKName")
 	$("#APKName").bind("blur",function(){
+		var flg = false;
 		//ajax后台验证--APKName是否已存在
 		$.ajax({
 			type:"GET",//请求类型
 			url:"apkexist.json",//请求的url
 			data:{APKName:$("#APKName").val()},//请求参数
 			dataType:"json",//ajax接口（请求url）返回的数据类型
+			// async:false,
 			success:function(data){//data：返回数据（json对象）
 				if(data.result == "empty"){//参数APKName为空，错误提示
 					validateTip(APKName.next(),{color:"red"}," APKName为不能为空！",false);
+					flg = false;
 					// alert("APKName为不能为空！");
 				}else if(data.result == "exist"){//账号不可用，错误提示
 					validateTip(APKName.next(),{color:"red"}," 该APKName已存在，不能使用！",false);
+					flg = false;
 					//alert("该APKName已存在，不能使用！");
 				}else if(data.result == "notExist"){//账号可用，正确提示
 					validateTip(APKName.next(),{color:"green"}," 该APKName可以使用!",false);
+					flg = true;
 					// alert("该APKName可以使用！");
 				}
 			},
@@ -137,9 +143,11 @@ $(function(){
 				alert("请求错误！");
 			}
 		});
+		return flg;
 	});
 
 });
+
       
       
       

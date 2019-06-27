@@ -1,7 +1,9 @@
 package com.clyy.service.Impl;
 
+import com.clyy.dao.AppVersionMapper;
 import com.clyy.dao.BackEndMapper;
 import com.clyy.pojo.AppInfo;
+import com.clyy.pojo.AppVersion;
 import com.clyy.pojo.BackendUser;
 import com.clyy.service.BackEndService;
 import com.clyy.util.PageSupport;
@@ -14,6 +16,8 @@ import java.util.List;
 public class BackEndServiceImpl implements BackEndService {
     @Resource
      private BackEndMapper backEndMapper;
+    @Resource
+    private AppVersionMapper appVersionMapper;
 
     //@Resource
     //private AppVersionMapper appVersionMapper;
@@ -42,6 +46,15 @@ public class BackEndServiceImpl implements BackEndService {
 
         if (totalCount>0){
             List<AppInfo> list = backEndMapper.getAuditInfoByPage(softwareName,flatformId,status,categoryLevel1,categoryLevel2,categoryLevel3,pageSupport.getStarRow(), pageSize);
+            if (list!=null){
+                for (AppInfo appInfo:list){
+                    AppVersion latestVersion = appVersionMapper.getAppVersionByAppId(appInfo.getId());
+                    if (latestVersion!=null){
+                        appInfo.setLatestversion(latestVersion);
+                        appInfo.setVersionNo(latestVersion.getVersionNo());
+                    }
+                }
+            }
             pageSupport.setList(list);
         }
 

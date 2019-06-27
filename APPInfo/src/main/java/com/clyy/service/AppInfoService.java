@@ -95,6 +95,14 @@ public interface AppInfoService {
     int addAppVersion(AppVersion appVersion);
 
     /**
+     * 更新APP的最新版本
+     * @param versionId
+     * @param id
+     * @return
+     */
+
+    boolean changeVersion(Integer versionId, Integer id);
+    /**
      * 上架和下架
      * @param appInfoId
      * @param saleswitch 用于判定该APP当前是上架还是下架状态

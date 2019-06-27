@@ -102,6 +102,7 @@
               <input type="number" id="versionSize" name="versionSize"  required="required"
               data-validate-minmax="10,500"  placeholder="请输入版本大小，单位为Mb" class="form-control col-md-7 col-xs-12">
             </div>
+              <span>${mess}</span>
           </div>
        
           <div class="item form-group">

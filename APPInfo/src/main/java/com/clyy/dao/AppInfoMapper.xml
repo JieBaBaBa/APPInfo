@@ -36,7 +36,7 @@
             ac3.categoryName categoryLevel3Name,
             ai.creationDate
         FROM app_info ai
-        LEFT JOIN app_version av ON ai.id=av.appId
+        LEFT JOIN app_version av ON ai.versionId=av.id
         JOIN data_dictionary dd ON ai.flatformId=dd.valueId AND dd.typeCode='APP_FLATFORM'
         JOIN data_dictionary ddy ON ai.status=ddy.valueId AND ddy.typeCode='APP_STATUS'
         JOIN app_category ac1 ON ai.categoryLevel1=ac1.id
@@ -217,6 +217,10 @@
       #{apkLocPath},#{apkFileName})
     </insert>
 
+    <!--更新APP最新版本-->
+    <update id="changeVersion" parameterType="appInfo">
+    UPDATE app_info SET versionId = #{versionId} WHERE id = #{id}
+</update>
 
     <!--更新上架和下架状态-->
     <update id="updateAppStatus" >
@@ -225,7 +229,9 @@
 
     <!--删除App-->
     <delete id="delApp">
-        DELETE FROM app_info WHERE id = #{id}
+        DELETE app_info,app_version  FROM app_info
+        LEFT JOIN app_version ON app_info.id=app_version.appId
+        WHERE app_info.id=#{id}
     </delete>
 
     <!--查看单个app信息-->
